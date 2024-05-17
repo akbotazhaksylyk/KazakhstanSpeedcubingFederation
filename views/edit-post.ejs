@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/assets/logo.PNG" />
+    <title>Редактировать пост</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+</head>
+<body>
+    <%- include('navbar', { user: user }) %>
+    <div class="ui container" style="margin-top: 40px;">
+        <h2>Edit Post</h2>
+        <form class="ui form" action="/posts/update/<%= post._id %>" method="POST">
+            <div class="field">
+                <label>Title</label>
+                <input type="text" name="title" value="<%= post.title %>" required>
+            </div>
+            <div class="field">
+                <label>Content</label>
+                <textarea name="content" required><%= post.content %></textarea>
+            </div>
+            <button class="ui button blue" type="submit">Update</button>
+        </form>
+    </div>
+    <%- include('./footer') %>
+</body>
+</html>

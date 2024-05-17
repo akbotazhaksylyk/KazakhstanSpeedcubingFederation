@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="icon" type="image/png" href="/assets/logo.PNG" />
+    <meta name="og:image"
+        content='https://www.worldcubeassociation.org/assets/og-wca_logo-d7533638dbb753b45e9969280ca4c13215fdb53774a27a451164066a016b2190.png' />
+    <meta name="description"
+        content="The World Cube Association governs competitions for mechanical puzzles that are operated by twisting groups of pieces, commonly known as 'twisty puzzles'. The most famous of these puzzles is the Rubik's Cube, invented by professor Rubik from Hungary. A selection of these puzzles are chosen as official events of the WCA.">
+    <title>Делегаты</title>
+    <script>
+        window.wca = {
+            currentLocale: 'ru',
+        };
+    </script>
+    <link rel="stylesheet"
+        href=".../assets/application-104daffa3b320a58f11016d47fee1fb960924ba3213bbfc5e882be55bc27d571.css"
+        media="all" />
+    <script src=".../packs/js/runtime-7938f75aaf6de578850c.js"></script>
+    <script src=".../packs/js/jquery-67644508c82866575bb3.js"></script>
+    <script src=".../packs/js/vendor-840231f5ebc79c0cd90e.js"></script>
+    <script src=".../packs/js/347-28f7bd8610cbcaa720eb.js"></script>
+    <script src=".../packs/js/631-e366f9e35052db9e099e.js"></script>
+    <script src=".../packs/js/924-c2bc3cf8e3369d02bb25.js"></script>
+    <script src=".../packs/js/127-a422b96ea63a18b084a2.js"></script>
+    <script src=".../packs/js/441-9fc4b8b50be30949f5ff.js"></script>
+    <script src=".../packs/js/259-45e6113c0436794e5eb7.js"></script>
+    <script src=".../packs/js/460-94ca08d154053ffcbd0c.js"></script>
+    <script src=".../packs/js/995-d10a1fd49cefbf72f794.js"></script>
+    <script src=".../packs/js/application-c859c41b6cf2efa87560.js"></script>
+    <script src=".../packs/js/global_styles-3494d31d7b6c2edd73eb.js"></script>
+    <script src=".../packs/js/i18n-d525f05e564d30e849fc.js"></script>
+    <script src=".../packs/js/lodash_utils-76cdc819df7c5435bbb0.js"></script>
+    <link rel="stylesheet" href=".../packs/css/216-36035357.css" />
+    <link rel="stylesheet" href=".../packs/css/272-5854f64f.css" />
+    <link rel="stylesheet" href=".../packs/css/347-504d8c99.css" />
+    <link rel="stylesheet" href=".../packs/css/773-883c42c5.css" />
+    <script src=".../assets/application-90b4c296a73cc012ae0929786e2ed3b73d0afc43970a55421bb872a75a648c56.js"></script>
+    <script src=".../assets/locales/ru-ff45443e708b20a11f21a1e5ad8118aecc36b81ccb2fe6b6d93da53b94ec7af7.js"></script>
+    <meta name="csrf-param" content="authenticity_token" />
+    <meta name="csrf-token"
+        content="HNK0QC-vtFsRXAmRXkiXKUK13lzwFJMu5JcqhlXxisIQ_AjREm-aQA1oZpOFfWVNih6c8i4R7cKqMchCi9gm_g" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://www.worldcubeassociation.org/rss.xml" />
+    <script src="https://cdn.tiny.cloud/1/2ku9u3hljkqi905p5iik47cdv4pykxe1v27ufjemvslddutb/tinymce/7/tinymce.min.js"
+        referrerpolicy="origin"></script>
+</head>
+
+<body data-rails-controller-name="static_pages" data-rails-controller-action-name="about"
+    style="background-color: white;">
+    <%- include('navbar', { user: user }) %>
+        <main>
+            <% if (user && user.isAdmin) { %>
+                <textarea id="editableContent"><%= existingContent %></textarea>
+                <button onclick="saveContent()">Сохранить изменения</button>
+                <% } else { %>
+                    <div data-react-class="StaticPages/About"
+                        data-react-props="{&quot;currentBoardMembers&quot;:[{&quot;id&quot;:62,&quot;created_at&quot;:&quot;2015-05-23T03:45:51.000Z&quot;,&quot;updated_at&quot;:&quot;2024-05-01T14:10:34.000Z&quot;,&quot;name&quot;:&quot;Blake Thompson&quot;,&quot;wca_id&quot;:&quot;2010THOM03&quot;,&quot;gender&quot;:&quot;m&quot;,&quot;country_iso2&quot;:&quot;US&quot;,&quot;url&quot;:&quot;https://www.worldcubeassociation.org/persons/2010THOM03&quot;,&quot;country&quot;:{&quot;id&quot;:&quot;USA&quot;,&quot;name&quot;:&quot;Соединенные Штаты&quot;,&quot;continentId&quot;:&quot;_North America&quot;,&quot;iso2&quot;:&quot;US&quot;},&quot;delegate_status&quot;:&quot;delegate&quot;,&quot;email&quot;:&quot;bthompson@worldcubeassociation.org&quot;,&quot;location&quot;:&quot;USA (District of Columbia)&quot;,&quot;region_id&quot;:33,&quot;class&quot;:&quot;user&quot;,&quot;teams&quot;:[{&quot;id&quot;:266,&quot;friendly_id&quot;:&quot;board&quot;,&quot;leader&quot;:false,&quot;senior_member&quot;:false,&quot;name&quot;:&quot;Blake Thompson&quot;,&quot;wca_id&quot;:&quot;2010THOM03&quot;,&quot;avatar&quot;:{&quot;url&quot;:&quot;https://avatars.worldcubeassociation.org/uploads/user/avatar/2010THOM03/1526357179.jpeg&quot;,&quot;thumb&quot;:{&quot;url&quot;:&quot;https://avatars.worldcubeassociation.org/uploads/user/avatar/2010THOM03/1526357179_thumb.jpeg&quot;}}}],&quot;avatar&quot;:{&quot;url&quot;:&quot;https://avatars.worldcubeassociation.org/uploads/user/avatar/2010THOM03/1526357179.jpeg&quot;,&quot;pending_url&quot;:&quot;https://www.worldcubeassociation.org/assets/missing_avatar_thumb-d77f478a307a91a9d4a083ad197012a391d5410f6dd26cb0b0e3118a5de71438.png&quot;,&quot;thumb_url&quot;:&quot;https://avatars.worldcubeassociation.org/uploads/user/avatar/2010THOM03/1526357179_thumb.jpeg&quot;,&quot;is_default&quot;:false}},{&quot;id&quot;:8306,&quot;created_at&quot;:&quot;2016-01-14T04:09:52.000Z&quot;,&quot;updated_at&quot;:&quot;2024-04-28T09:37:08.000Z&quot;,&quot;name&quot;:&quot;Ethan Pride&quot;,&quot;wca_id&quot;:&quot;2014PRID01&quot;,&quot;gender&quot;:&quot;m&quot;,&quot;country_iso2&quot;:&quot;AU&quot;,&quot;url&quot;:&quot;https://www.worldcubeassociation.org/persons/2014PRID01&quot;,&quot;country&quot;:{&quot;id&quot;:&quot;Australia&quot;,&quot;name&quot;:&quot;Австралия&quot;,&quot;continentId&quot;:&quot;_Oceania&quot;,&quot;iso2&quot;:&quot;AU&quot;},&quot;delegate_status&quot;:&quot;delegate&quot;,&quot;email&quot;:&quot;epride@worldcubeassociation.org&quot;,&quot;location&quot;:&quot;Australia (Western Australia)&quot;,&quot;region_id&quot;:7,&quot;class&quot;:&quot;user&quot;,&quot;teams&quot;:[{&quot;id&quot;:262,&quot;friendly_id&quot;:&quot;board&quot;,&quot;leader&quot;:false,&quot;senior_member&quot;:false,&quot;name&quot;:&quot;Ethan Pride&quot;,&quot;wca_id&quot;:&quot;2014PRID01&quot;,&quot;avatar&quot;:{&quot;url&quot;:&quot;https://avatars.worldcubeassociation.org/uploads/user/avatar/2014PRID01/1651581622.PNG&quot;,&quot;thumb&quot;:{&quot;url&quot;:&quot;https://avatars.worldcubeassociation.org/uploads/user/avatar/2014PRID01/1651581622_thumb.PNG&quot;}}},{&quot;id&quot;:&quot;teams_committees_553&quot;,&quot;friendly_id&quot;:&quot;wsot&quot;,&quot;leader&quot;:true,&quot;senior_member&quot;:false,&quot;name&quot;:&quot;Ethan Pride&quot;,&quot;wca_id&quot;:&quot;2014PRID01&quot;,&quot;avatar&quot;:{&quot;url&quot;:&quot;https://avatars.worldcubeassociation.org/uploads/user/avatar/2014PRID01/1651581622.PNG&quot;,&quot;thumb&quot;:{&quot;url&quot;:&quot;https://avatars.worldcubeassociation.org/uploads/user/avatar/2014PRID01/1651581622_thumb.PNG&quot;}}}],&quot;avatar&quot;:{&quot;url&quot;:&quot;https://avatars.worldcubeassociation.org/uploads/user/avatar/2014PRID01/1651581622.PNG&quot;,&quot;pending_url&quot;:&quot;https://www.worldcubeassociation.org/assets/missing_avatar_thumb-d77f478a307a91a9d4a083ad197012a391d5410f6dd26cb0b0e3118a5de71438.png&quot;,&quot;thumb_url&quot;:&quot;https://avatars.worldcubeassociation.org/uploads/user/avatar/2014PRID01/1651581622_thumb.PNG&quot;,&quot;is_default&quot;:false}},{&quot;id&quot;:128529,&quot;created_at&quot;:&quot;2018-10-27T08:38:40.000Z&quot;,&quot;updated_at&quot;:&quot;2024-04-27T16:31:54.000Z&quot;,&quot;name&quot;:&quot;Kerrie Jarman&quot;,&quot;wca_id&quot;:&quot;2019JARM01&quot;,&quot;gender&quot;:&quot;f&quot;,&quot;country_iso2&quot;:&quot;AU&quot;,&quot;url&quot;:&quot;https://www.worldcubeassociation.org/persons/2019JARM01&quot;,&quot;country&quot;:{&quot;id&quot;:&quot;Australia&quot;,&quot;name&quot;:&quot;Австралия&quot;,&quot;continentId&quot;:&quot;_Oceania&quot;,&quot;iso2&quot;:&quot;AU&quot;},&quot;delegate_status&quot;:&quot;delegate&quot;,&quot;email&quot;:&quot;kjarman@worldcubeassociation.org&quot;,&quot;location&quot;:&quot;Australia (Victoria)&quot;,&quot;region_id&quot;:7,&quot;class&quot;:&quot;user&quot;,&quot;teams&quot;:[{&quot;id&quot;:268,&quot;friendly_id&quot;:&quot;board&quot;,&quot;leader&quot;:false,&quot;senior_member&quot;:false,&quot;name&quot;:&quot;Kerrie Jarman&quot;,&quot;wca_id&quot;:&quot;2019JARM01&quot;,&quot;avatar&quot;:{&quot;url&quot;:&quot;https://avatars.worldcubeassociation.org/uploads/user/avatar/2019JARM01/1686450645.jpg&quot;,&quot;thumb&quot;:{&quot;url&quot;:&quot;https://avatars.worldcubeassociation.org/uploads/user/avatar/2019JARM01/1686450645_thumb.jpg&quot;}}}],&quot;avatar&quot;:{&quot;url&quot;:&quot;https://avatars.worldcubeassociation.org/uploads/user/avatar/2019JARM01/1686450645.jpg&quot;,&quot;pending_url&quot;:&quot;https://www.worldcubeassociation.org/assets/missing_avatar_thumb-d77f478a307a91a9d4a083ad197012a391d5410f6dd26cb0b0e3118a5de71438.png&quot;,&quot;thumb_url&quot;:&quot;https://avatars.worldcubeassociation.org/uploads/user/avatar/2019JARM01/1686450645_thumb.jpg&quot;,&quot;is_default&quot;:false}},{&quot;id&quot;:14448,&quot;created_at&quot;:&quot;2016-03-15T09:14:08.000Z&quot;,&quot;updated_at&quot;:&quot;2024-04-29T06:00:05.000Z&quot;,&quot;name&quot;:&quot;Michael Chai (柴天方)&quot;,&quot;wca_id&quot;:&quot;2016CHAI03&quot;,&quot;gender&quot;:&quot;m&quot;,&quot;country_iso2&quot;:&quot;US&quot;,&quot;url&quot;:&quot;https://www.worldcubeassociation.org/persons/2016CHAI03&quot;,&quot;country&quot;:{&quot;id&quot;:&quot;USA&quot;,&quot;name&quot;:&quot;Соединенные Штаты&quot;,&quot;continentId&quot;:&quot;_North America&quot;,&quot;iso2&quot;:&quot;US&quot;},&quot;delegate_status&quot;:&quot;delegate&quot;,&quot;email&quot;:&quot;mchai@worldcubeassociation.org&quot;,&quot;location&quot;:&quot;USA (California)&quot;,&quot;region_id&quot;:29,&quot;class&quot;:&quot;user&quot;,&quot;teams&quot;:[{&quot;id&quot;:269,&quot;friendly_id&quot;:&quot;board&quot;,&quot;leader&quot;:false,&quot;senior_member&quot;:false,&quot;name&quot;:&quot;Michael Chai (柴天方)&quot;,&quot;wca_id&quot;:&quot;2016CHAI03&quot;,&quot;avatar&quot;:{&quot;url&quot;:&quot;https://avatars.worldcubeassociation.org/uploads/user/avatar/2016CHAI03/1692157759.png&quot;,&quot;thumb&quot;:{&quot;url&quot;:&quot;https://avatars.worldcubeassociation.org/uploads/user/avatar/2016CHAI03/1692157759_thumb.png&quot;}}}],&quot;avatar&quot;:{&quot;url&quot;:&quot;https://avatars.worldcubeassociation.org/uploads/user/avatar/2016CHAI03/1692157759.png&quot;,&quot;pending_url&quot;:&quot;https://www.worldcubeassociation.org/assets/missing_avatar_thumb-d77f478a307a91a9d4a083ad197012a391d5410f6dd26cb0b0e3118a5de71438.png&quot;,&quot;thumb_url&quot;:&quot;https://avatars.worldcubeassociation.org/uploads/user/avatar/2016CHAI03/1692157759_thumb.png&quot;,&quot;is_default&quot;:false}}]}"
+                        data-react-cache-id="StaticPages/About-0" class="container"><%- existingContent %></div>
+                    <% } %>
+        </main>
+        <%- include('footer') %>
+            <script>
+                tinymce.init({
+                    selector: '#editableContent',
+                    plugins: 'link lists preview image',
+                    toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | link image',
+                    image_title: true,
+                    automatic_uploads: true,
+                    file_picker_types: 'image',
+                    file_picker_callback: function (cb, value, meta) {
+                        var input = document.createElement('input');
+                        input.setAttribute('type', 'file');
+                        input.setAttribute('accept', 'image/*');
+
+                        input.onchange = function () {
+                            var file = this.files[0];
+                            var reader = new FileReader();
+
+                            reader.onload = function () {
+                                var id = 'blobid' + (new Date()).getTime();
+                                var blobCache = tinymce.activeEditor.editorUpload.blobCache;
+                                var base64 = reader.result.split(',')[1];
+                                var blobInfo = blobCache.create(id, file, base64);
+                                blobCache.add(blobInfo);
+
+                                // call the callback and populate the Title field with the file name
+                                cb(blobInfo.blobUri(), { title: file.name });
+                            };
+                            reader.readAsDataURL(file);
+                        };
+
+                        input.click();
+                    },
+                    setup: function (editor) {
+                        editor.on('change', function () {
+                            editor.save();
+                        });
+                    }
+                });
+
+                function saveContent() {
+                    const content = tinymce.get('editableContent').getContent();
+                    fetch('/save-delegates', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ content: content })
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                alert('Контент сохранен!');
+                                window.location.reload(); // Добавьте это для перезагрузки страницы и отображения нового контента
+                            } else {
+                                throw new Error('Проблема при сохранении контента');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Ошибка при сохранении:', error);
+                            alert('Ошибка при сохранении: ' + error.message);
+                        });
+                }
+            </script>
+</body>
+
+</html>

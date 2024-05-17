@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script async="" src="//www.google-analytics.com/analytics.js"></script>
+    <script
+        type="text/javascript">window.NREUM || (NREUM = {}); NREUM.info = { "beacon": "bam.nr-data.net", "errorBeacon": "bam.nr-data.net", "licenseKey": "43326a088c", "applicationID": "10385163", "transactionName": "dFheEERaWFwHFE1CX0RDQ0tfW1BVGg==", "queueTime": 0, "applicationTime": 81, "agent": "" }</script>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="icon" type="image/png" href="/assets/logo.PNG" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    
+    <meta name="og:image"
+        content="https://www.worldcubeassociation.org/assets/og-wca_logo-d7533638dbb753b45e9969280ca4c13215fdb53774a27a451164066a016b2190.png">
+
+    <meta name="description"
+        content="The World Cube Association governs competitions for mechanical puzzles that are operated by twisting groups of pieces, commonly known as 'twisty puzzles'. The most famous of these puzzles is the Rubik's Cube, invented by professor Rubik from Hungary. A selection of these puzzles are chosen as official events of the WCA.">
+
+    <title>World Cube Association</title>
+    <script>
+        window.wca = {
+            currentLocale: 'ru',
+        };
+    </script>
+
+    <link rel="stylesheet"
+        href="/assets/application-104daffa3b320a58f11016d47fee1fb960924ba3213bbfc5e882be55bc27d571.css" media="all">
+
+    <link rel="stylesheet" href="/packs/css/216-36035357.css">
+    <link rel="stylesheet" href="/packs/css/272-5854f64f.css">
+
+    <script src="/assets/application-90b4c296a73cc012ae0929786e2ed3b73d0afc43970a55421bb872a75a648c56.js"></script>
+    <script src="/assets/locales/ru-ff45443e708b20a11f21a1e5ad8118aecc36b81ccb2fe6b6d93da53b94ec7af7.js"></script>
+
+
+    <meta name="csrf-param" content="authenticity_token">
+    <meta name="csrf-token"
+        content="ReZuOxmss7A9BVs8BhaJRrH9TLmsB_8-I40n3QYP3PhJyNKqJGydqyExND7dI3sieVYOF3ICgdJtK8UZ2CZwxA">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://www.worldcubeassociation.org/rss.xml">
+    <script data-ad-client="ca-pub-8682718775826560" async=""
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</head>
+
+<body data-rails-controller-name="posts" data-rails-controller-action-name="index" style="background-color: white;">
+    <%- include('navbar', { user: user }) %>
+        <main>
+            <div id="flash-alerts" class="container"></div>
+            <div class="container">
+                <% if (user && user.emailVerified) { %>
+                    <button class="ui button blue" onclick="location.href='/posts/new'">Create New Post</button>
+                    <% } %>
+            </div><br>
+            <div class="container">
+                <div class="posts-widget">
+                    <div class="ui cards">
+                        <% posts.forEach(function(post) { %>
+                            <div class="ui fluid card">
+                                <div class="content">
+                                    <div class="header"><a href="/posts/<%= post._id %>">
+                                            <%= post.title %>
+                                        </a></div>
+                                    <div class="meta">Posted by <%= post.author %> on <%= new
+                                                Date(post.date).toDateString() %>
+                                    </div>
+                                    <div class="description">
+                                        <p>
+                                            <%= post.content %>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="extra content">
+                                    <a href="/posts/<%= post._id %>" class="ui button primary">Прочитать полный пост</a>
+                                    <% if (user && user.emailVerified) { %>
+                                        <a href="/posts/edit/<%= post._id %>" class="ui button orange">Редактировать</a>
+                                        <button class="ui button red"
+                                            onclick="deletePost('<%= post._id %>')">Удалить</button>
+                                        <% } %>
+                                </div>
+                            </div>
+                            <% }); %>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <%- include('footer') %>
+
+            <script>
+                function deletePost(id) {
+                    if (confirm('Are you sure you want to delete this post?')) {
+                        $.ajax({
+                            url: '/posts/' + id,
+                            type: 'DELETE',
+                            success: function (result) {
+                                window.location.reload();
+                            }
+                        });
+                    }
+                }
+            </script>
+</body>
+
+</html>

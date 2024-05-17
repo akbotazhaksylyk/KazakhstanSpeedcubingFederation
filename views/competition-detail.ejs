@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/assets/logo.PNG" />
+    <title>
+        <%= competition.name %>
+    </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <script>
+        function confirmDeletion(event) {
+            if (!confirm('Вы уверены, что хотите удалить это соревнование?')) {
+                event.preventDefault();
+            }
+        }
+
+        function makeEditable(element) {
+            let isDateField = element.hasAttribute('data-is-date');
+            let currentText = element.querySelector('span').innerText;
+            let fieldName = element.getAttribute('data-name');
+
+            if (isDateField) {
+                element.innerHTML = `<input type="date" value="${currentText}" onblur="submitEdit(this, '${fieldName}')" />`;
+            } else {
+                element.innerHTML = `<input type="text" value="${currentText}" onblur="submitEdit(this, '${fieldName}')" />`;
+            }
+            element.firstChild.focus();
+        }
+
+        function submitEdit(input, name) {
+            let value = input.value;
+            let data = {};
+            data[name] = value;
+            fetch('/competitions/<%= competition._id %>/edit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    input.parentElement.innerHTML = `<span>${value}</span>`; // Restore the span wrapper with new value
+                })
+                .catch(error => console.error('Error updating:', error));
+        }
+    </script>
+</head>
+
+<body style="background-color: white;">
+    <%- include('navbar', { user: user }) %>
+        <main>
+            <div class="ui container">
+
+                <% if (user && user.isAdmin) { %>
+                    <div id="flash-alerts" class="container"></div>
+                    <% } %>
+                        <h1>
+                            <% if (user && user.isAdmin) { %>
+                                <p data-editable onclick="makeEditable(this)" data-name="name"><span>
+                                        <%= competition.name %>
+                                    </span></p>
+                                <% } else { %>
+                                    <p>
+                                        <%= competition.name %>
+                                    </p>
+                                    <% } %>
+                        </h1>
+                        <% if (user && user.isAdmin) { %>
+                            <p data-editable onclick="makeEditable(this)" data-name="nameReason">Причина названия:
+                                <span>
+                                    <%= competition.nameReason %>
+                                </span></p>
+                            <p data-editable onclick="makeEditable(this)" data-name="city">Город Казахстана: <span>
+                                    <%= competition.city %>
+                                </span></p>
+                            <p onclick="makeEditable(this)" data-name="venueName">Место проведения: <span>
+                                    <%= competition.venueName %>
+                                </span>
+                            </p>
+                            <p onclick="makeEditable(this)" data-name="venueDetails">Детали места проведения: <span>
+                                    <%= competition.venueDetails %>
+                                </span>
+                            </p>
+                            <p onclick="makeEditable(this)" data-name="venueAddress">Адрес места проведения: <span>
+                                    <%= competition.venueAddress %>
+                                </span>
+                            </p>
+                            <p onclick="makeEditable(this)" data-name="startDate" data-is-date="true">Дата начала:
+                                <span>
+                                    <%= new Date(competition.startDate).toLocaleDateString('ru-RU') %>
+                                </span></p>
+                            <p onclick="makeEditable(this)" data-name="endDate" data-is-date="true">Дата окончания:
+                                <span>
+                                    <%= new Date(competition.endDate).toLocaleDateString('ru-RU') %>
+                                </span></p>
+                            <p onclick="makeEditable(this)" data-name="information">Важная информация: <span>
+                                    <%= competition.information %>
+                                </span>
+                            </p>
+                            <p onclick="makeEditable(this)" data-name="competitorLimit">Лимит участников: <span>
+                                    <%= competition.competitorLimit %>
+                                </span>
+                            </p>
+                            <p onclick="makeEditable(this)" data-name="competitorLimitReason">Причина лимита: <span>
+                                    <%= competition.competitorLimitReason %>
+                                </span>
+                            </p>
+                            <p onclick="makeEditable(this)" data-name="staff.delegates">Делегат(ы): <span>
+                                    <%= competition.staff.delegates %>
+                                </span>
+                            </p>
+                            <p onclick="makeEditable(this)" data-name="staff.organizers">Организатор(ы): <span>
+                                    <%= competition.staff.organizers %>
+                                </span>
+                            </p>
+                            <p onclick="makeEditable(this)" data-name="staff.contactInfo">Контактная информация: <span>
+                                    <%= competition.staff.contactInfo %>
+                                </span>
+                            </p>
+                            <p onclick="makeEditable(this)" data-name="registration.extraRequirements">Дополнительные
+                                требования к
+                                регистрации: <span>
+                                    <%= competition.registration.extraRequirements %>
+                                </span>
+                            </p>
+                            <p onclick="makeEditable(this)" data-name="entryFees.baseEntryFee">Взнос за участие (KZT):
+                                <span>
+                                    <%= competition.entryFees.baseEntryFee %>
+                                </span>
+                            </p>
+                            <p onclick="makeEditable(this)" data-name="entryFees.guestEntryFee">Взнос для зрителей
+                                (KZT): <span>
+                                    <%= competition.entryFees.guestEntryFee %>
+                                </span>
+                            </p>
+                            <% } else { %>
+                                <p>Причина названия: <%= competition.nameReason %>
+                                </p>
+                                <p>Город Казахстана: <%= competition.city %>
+                                </p>
+                                <p>Место проведения: <%= competition.venueName %>
+                                </p>
+                                <p>Детали места проведения: <%= competition.venueDetails %>
+                                </p>
+                                <p>Адрес места проведения: <%= competition.venueAddress %>
+                                </p>
+                                <p>Дата начала: <%= new Date(competition.startDate).toLocaleDateString('ru-RU') %>
+                                </p>
+                                <p>Дата окончания: <%= new Date(competition.endDate).toLocaleDateString('ru-RU') %>
+                                </p>
+                                <p>Важная информация: <%= competition.information %>
+                                </p>
+                                <p>Лимит участников: <%= competition.competitorLimit %>
+                                </p>
+                                <p>Причина лимита: <%= competition.competitorLimitReason %>
+                                </p>
+                                <p>Делегат(ы): <%= competition.staff.delegates %>
+                                </p>
+                                <p>Организатор(ы): <%= competition.staff.organizers %>
+                                </p>
+                                <p>Контактная информация: <%= competition.staff.contactInfo %>
+                                </p>
+                                <p>Дополнительные
+                                    требования к
+                                    регистрации: <span>
+                                        <%= competition.registration.extraRequirements %>
+                                    </span>
+                                </p>
+                                <p>Взнос за участие (KZT): <%= competition.entryFees.baseEntryFee %>
+                                </p>
+                                <p>Взнос для зрителей
+                                    (KZT): <%= competition.entryFees.guestEntryFee %>
+                                </p>
+                                <% } %>
+
+                                    <!-- <p>Разрешена ли регистрация на месте? <%= competition.registration.allowOnTheSpot ? 'Да' : 'Нет' %>
+                </p>
+                <p>Разрешено ли участникам удалять регистрацию после подтверждения? <%=
+                        competition.registration.allowSelfDeleteAfterAcceptance ? 'Да' : 'Нет' %>
+                </p> -->
+
+                                    <% if (user && user.isAdmin) { %>
+                                        <form action="/competitions/<%= competition._id %>/delete" method="POST"
+                                            style="margin-bottom: 20px;" onsubmit="confirmDeletion(event)">
+                                            <button type="submit" class="ui negative button">Удалить
+                                                соревнование</button>
+                                        </form>
+                                        <% } %>
+            </div>
+        </main>
+        <%- include('./footer') %>
+</body>
+
+</html>

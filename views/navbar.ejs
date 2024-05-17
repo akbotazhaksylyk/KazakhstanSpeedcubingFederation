@@ -1,0 +1,207 @@
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/png" href="/assets/logo.PNG" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="stylesheet" href="/assets/application-104daffa3b320a58f11016d47fee1fb960924ba3213bbfc5e882be55bc27d571.css"
+    media="all" />
+<script src="/packs/js/runtime-7938f75aaf6de578850c.js"></script>
+<script src="/packs/js/jquery-67644508c82866575bb3.js"></script>
+<script src="/packs/js/vendor-840231f5ebc79c0cd90e.js"></script>
+<script src="/packs/js/347-28f7bd8610cbcaa720eb.js"></script>
+<script src="/packs/js/0-8d10846f05af5784b89f.js"></script>
+<script src="/packs/js/204-1f44bcbfd1418fbb1826.js"></script>
+<script src="/packs/js/127-a422b96ea63a18b084a2.js"></script>
+<script src="/packs/js/792-977c22b0298c87dc1071.js"></script>
+<script src="/packs/js/823-b4f1821a45008377a972.js"></script>
+<script src="/packs/js/460-781ffbe609799f1f76c3.js"></script>
+<script src="/packs/js/995-baa8cb3216a06b60cd05.js"></script>
+<script src="/packs/js/754-6b0343cb1fb7f87a2218.js"></script>
+<script src="/packs/js/application-cc1c4a0032c1c626f19c.js"></script>
+<script src="/packs/js/global_styles-68a018c9be13dbd29fd4.js"></script>
+<script src="/packs/js/i18n-18a97bc05f4da1c82f28.js"></script>
+<script src="/packs/js/homepage-b9cca13e3d80f53d19c3.js"></script>
+<script src="/packs/js/lodash_utils-59c0f4ace4648fe0ba89.js"></script>
+<link rel="stylesheet" href="/packs/css/216-36035357.css" />
+<link rel="stylesheet" href="/packs/css/272-5854f64f.css" />
+<link rel="stylesheet" href="/packs/css/347-377360ff.css" />
+<link rel="stylesheet" href="/packs/css/773-94f5ca70.css" />
+<link rel="stylesheet" href="/packs/css/700-21052b36.css" />
+<script src="/assets/application-3420a68b5ecd97b428e153fac926004c768a766bf077eb68f308318449b3c4b4.js"></script>
+<meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token"
+    content="zJ7NWJAG1SpBtabO1M-an03Lmu67S41TxzObJWW1pOtwjmxi5xRZ0OmSKChgRcEIm6s15UuJBIYj-akq1R60Ew" />
+
+<!-- navbar -->
+<div class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="brand">
+        <a href="index"><img
+                src="/assets/logo.png" /></a>
+    </div>
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <div class="navbar-collapse collapse disabled">
+        <ul class="nav navbar-nav">
+            <li class="top-nav logo">
+                <a href="/index"><img src="/assets/logo.png" /></a>
+            </li>
+            <li class="dropdown ">
+                <a href="#" class="dropdown-toggle top-nav" data-toggle="dropdown" data-hover="dropdown">
+                    <i class="icon info circle "></i> <span class="hidden-sm hidden-md">Информация</span> <span
+                        class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="/about"><i class="icon file alternate "></i> О нас</a></li>
+                    <li><a href="/documents"><i class="icon copy "></i> Документы</a></li>
+                    <li><a href="/officers-and-board"><i class="icon sitemap "></i> Сотрудники и руководство</a></li>
+                    <li><a href="/delegates"><i class="icon sitemap "></i> Делегаты</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/faq"><i class="icon question circle "></i> Часто задаваемые вопросы</a></li>
+                    <li><a href="/education"><i class="icon graduation cap "></i> Обучающие ресурсы</a></li>
+                    <li><a href="/contact"><i class="icon envelope "></i> Контактная информация</a></li>
+                    <li><a href="/speedcubing-history"><i class="icon history "></i> История спидкубинга</a></li>
+                    <li><a href="/privacy"><i class="icon user secret "></i> Политика конфиденциальности</a></li>
+                    <li><a href="/disclaimer"><i class="icon exclamation circle "></i> Отказ от ответственности</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="/score-tools"><i class="icon wrench "></i> Программы</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle top-nav" data-toggle="dropdown" data-hover="dropdown">
+                    <i class="icon cube "></i><span class="hidden-sm hidden-md"> Соревнования</span>
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="/competitions/all"><i class="icon globe "></i> Все</a></li>
+                    <!-- <li><a href="/competitions/mine"><i class="icon list "></i> Мои соревнования</a></li> -->
+                    <% if (user && user.isAdmin) { %> <!-- Проверка, является ли пользователь администратором -->
+                        <li><a href="/competitions/new"><i class="icon plus "></i> Новое соревнование</a></li>
+                    <% } %>
+                </ul>
+            </li>            
+            <!-- <li class="dropdown ">
+                <a href="#" class="dropdown-toggle top-nav" data-toggle="dropdown" data-hover="dropdown">
+                    <i class="icon list ol "></i>
+                    <span class="hidden-sm hidden-md">Результаты</span>
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="/results/rankings/333/single"><i class="icon signal fa-rotate-90"></i> Рейтинги</a>
+                    </li>
+                    <li><a href="/results/records"><i class="icon trophy "></i> Рекорды</a></li>
+                    <li><a href="/persons"><i class="icon users "></i> Участники</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/statistics-sub/index"><i class="icon chart area "></i> Мои результаты</a></li>
+                </ul>
+            </li> -->
+            <li class="dropdown ">
+                <a href="#" class="dropdown-toggle top-nav" data-toggle="dropdown" data-hover="dropdown">
+                    <i class="icon book "></i> <span class="hidden-sm hidden-md">Положения</span> <span
+                        class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="/regulations"><i class="icon book "></i> Положения</a></li>
+                    <li><a href="/guidelines"><i class="icon sticky note "></i> Руководство</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle top-nav" data-toggle="dropdown" data-hover="dropdown">
+                    <i class="icon paper plane "></i> <span class="hidden-sm hidden-md">Соцсети</span> <span
+                        class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a target="_blank" class="hide-new-window-icon" href="https://www.instagram.com/cubing.kz">
+                            <i class="icon instagram "></i> Instagram
+                        </a>
+                    </li>
+                    <li>
+                        <a target="_blank" class="hide-new-window-icon"
+                            href="https://www.tiktok.com/@cubing.kz?_t=8l3gvZrqS05&_r=1">
+                            <i class="icon tiktok "></i> TikTok
+                        </a>
+                    </li>
+                    <li>
+                        <a target="_blank" class="hide-new-window-icon"
+                            href="https://youtube.com/@kazakhstanspeedcubingfeder6829?si=yANHEwgMNwfFtC-v">
+                            <i class="icon youtube "></i> YouTube
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- <li>
+                <a href="/live-sub/index" class="top-nav hide-new-window-icon" target="_blank">
+                    <i class="icon sort numeric down "></i>
+                    <span class="visible-lg-inline visible-xs-inline">Live</span>
+                </a>
+            </li> -->
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <!-- <li class="search-container my-2 my-lg-0">
+                <div data-react-class="SearchWidget" data-react-props="{}" data-react-cache-id="SearchWidget-0"
+                    id="omnisearch-form"></div>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle top-nav" data-toggle="dropdown" data-hover="dropdown">
+                    <i class="icon language "></i>
+                    <span class="visible-lg-inline visible-xs-inline">Русский</span>
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" id="locale-selector" role="menu">
+                    <li class="active">
+                        <a href="/update_locale/ru">
+                            Русский
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="/update_locale/kk">
+                            Қазақша
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="/update_locale/en">
+                            English
+                        </a>
+                    </li>
+                </ul>
+            </li> -->
+            <li class="dropdown">
+                <% if (user) { %>
+                    <!-- Пользователь вошел в систему -->
+                    <a href="#" class="dropdown-toggle top-nav" data-toggle="dropdown" data-hover="dropdown">
+                        <% if (user && user.avatarUrl && user.avatarUrl !== '/uploads/default.png') { %>
+                            <img src="/uploads/<%= user.avatarUrl %>?t=<%= Date.now() %>" alt="Avatar" style="width: 50px; height: 50px; object-fit: cover;">
+                        <% } else { %>
+                            <img src="/uploads/default.png" alt="Default Avatar" style="width: 50px; height: 50px; object-fit: cover;">
+                        <% } %>                                                                      
+               
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="user-name" style="margin-left: 20px; color: grey; font-size: 12px"><%= user.name %></li>
+                        <li><a href="/profile/edit">Редактировать профиль</a></li>
+                        <!-- <li><a href="/competitions/mine">Мои соревнования</a></li>
+                        <li><a href="/results/mine">Мои результаты</a></li> -->
+                        <!-- Дополнительные ссылки -->
+                        <li class="divider"></li>
+                        <li><a href="/logout">Выйти</a></li>
+                    </ul>
+                    <% } else { %>
+                        <!-- Пользователь не вошел в систему -->
+                        <a href="#" class="dropdown-toggle top-nav" data-toggle="dropdown" data-hover="dropdown">
+                            Войти
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a class="top-nav" href="/users/sign_in">Войти</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/users/sign_up">Создать аккаунт</a></li>
+                            <li><a href="/users/confirmation">Не получили подтверждение?</a></li>
+                        </ul>
+                        <% } %>
+            </li>
+        </ul>
+    </div><!--/.nav-collapse -->
+</div>

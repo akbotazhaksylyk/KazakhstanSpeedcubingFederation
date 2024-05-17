@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="icon" type="image/png" href="/assets/logo.PNG" />
+    <meta name="og:image"
+        content='https://www.worldcubeassociation.org/assets/og-wca_logo-d7533638dbb753b45e9969280ca4c13215fdb53774a27a451164066a016b2190.png' />
+    <meta name="description"
+        content="The World Cube Association governs competitions for mechanical puzzles that are operated by twisting groups of pieces, commonly known as 'twisty puzzles'. The most famous of these puzzles is the Rubik's Cube, invented by professor Rubik from Hungary. A selection of these puzzles are chosen as official events of the WCA.">
+    <title>Обучающие ресурсы</title>
+    <script>
+        window.wca = {
+            currentLocale: 'ru',
+        };
+    </script>
+    <link rel="stylesheet"
+        href="/assets/application-104daffa3b320a58f11016d47fee1fb960924ba3213bbfc5e882be55bc27d571.css" media="all" />
+    <script src="/packs/js/runtime-7938f75aaf6de578850c.js"></script>
+    <script src="/packs/js/jquery-67644508c82866575bb3.js"></script>
+    <script src="/packs/js/vendor-840231f5ebc79c0cd90e.js"></script>
+    <script src="/packs/js/347-28f7bd8610cbcaa720eb.js"></script>
+    <script src="/packs/js/631-e366f9e35052db9e099e.js"></script>
+    <script src="/packs/js/924-c2bc3cf8e3369d02bb25.js"></script>
+    <script src="/packs/js/127-a422b96ea63a18b084a2.js"></script>
+    <script src="/packs/js/441-9fc4b8b50be30949f5ff.js"></script>
+    <script src="/packs/js/259-45e6113c0436794e5eb7.js"></script>
+    <script src="/packs/js/460-c223ff77b783cec42347.js"></script>
+    <script src="/packs/js/995-cfbbaa874e266dc77cad.js"></script>
+    <script src="/packs/js/application-cc91946f14e800cb04b6.js"></script>
+    <script src="/packs/js/global_styles-3494d31d7b6c2edd73eb.js"></script>
+    <script src="/packs/js/i18n-d525f05e564d30e849fc.js"></script>
+    <script src="/packs/js/lodash_utils-76cdc819df7c5435bbb0.js"></script>
+    <link rel="stylesheet" href="/packs/css/216-36035357.css" />
+    <link rel="stylesheet" href="/packs/css/272-5854f64f.css" />
+    <link rel="stylesheet" href="/packs/css/347-504d8c99.css" />
+    <link rel="stylesheet" href="/packs/css/773-883c42c5.css" />
+    <script src="/assets/application-90b4c296a73cc012ae0929786e2ed3b73d0afc43970a55421bb872a75a648c56.js"></script>
+    <script src="/assets/locales/ru-ff45443e708b20a11f21a1e5ad8118aecc36b81ccb2fe6b6d93da53b94ec7af7.js"></script>
+    <meta name="csrf-param" content="authenticity_token" />
+    <meta name="csrf-token"
+        content="HFAnEbby_jjQYxiWd-e1EwkFl07MWS0vhAVs9yP2y1kQfpuAizLQI8xXd5Ss0kd3wa7V4BJcU8PKo44z_d9nZQ" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://www.worldcubeassociation.org/rss.xml" />
+    <style>
+        button {
+            background-color: #c2ebff;
+            /* Зеленый для добавления */
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 6px 12px;
+            border-radius: 4px;
+            margin-left: 10px;
+        }
+
+        button.delete-btn {
+            background-color: #f44336;
+            /* Поменяем на серый для удаления */
+        }
+
+        button:hover {
+            opacity: 0.85;
+        }
+    </style>
+</head>
+
+<body data-rails-controller-name="static_pages" data-rails-controller-action-name="education"
+    style="background-color: white;">
+    <%- include('navbar', { user: user }) %>
+        <main>
+            <div class="container">
+                <h1>Обучающие ресурсы</h1>
+
+                <% if (user && user.isAdmin) { %>
+                    <button onclick="addDocument()">Добавить документ</button>
+                    <% } %>
+
+                        <div id="accordion" class="panel-group">
+                            <% education.forEach(function(education) { %>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading heading-as-link">
+                                        <h4 class="panel-title">
+                                            <a class="full-space" href="<%= education.url %>">
+                                                <i class="icon file alt "></i>
+                                                <%= education.name %>
+                                            </a>
+                                            <% if (user && user.isAdmin) { %>
+                                                <button onclick="deleteDocument('<%= education._id %>')"
+                                                    style="float: right; margin-top: -3px;">Удалить</button>
+                                                <% } %>
+                                        </h4>
+                                    </div>
+                                </div>
+                                <% }); %>
+                        </div>
+            </div>
+        </main>
+        <%- include('./footer') %>
+            <script>
+                function addDocument() {
+                    var url = prompt("Введите URL документа:");
+                    var name = prompt("Введите название документа:");
+                    if (url && name) {
+                        fetch('/admin/education/add', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ url: url, name: name })
+                        }).then(response => {
+                            if (response.ok) {
+                                location.reload();
+                            }
+                        });
+                    }
+                }
+
+                function deleteDocument(docId) {
+                    if (!confirm('Вы уверены, что хотите удалить этот документ?')) return;
+
+                    fetch(`/admin/education/delete/${docId}`, {
+                        method: 'DELETE'
+                    }).then(response => response.json())
+                        .then(data => {
+                            alert(data.message);
+                            if (data.success) {
+                                location.reload(); // Перезагрузка страницы, чтобы обновить список документов
+                            }
+                        })
+                        .catch(error => console.error('Ошибка:', error));
+                }
+
+            </script>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/assets/logo.PNG" />
+    <title>Create New Post</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <style>
+        /* Set normal state styles */
+        input[name="title"], textarea[name="content"] {
+            border-color: #ccc; /* Default border color */
+        }
+
+        /* Focused state styles */
+        input[name="title"]:focus, textarea[name="content"]:focus {
+            border-color: #85b7d9; /* Highlight color on focus */
+            box-shadow: none; /* No shadow for a cleaner look */
+        }
+
+        /* Error state overrides if needed in the future */
+        input.error, textarea.error {
+            border-color: red !important; /* Red color on validation errors */
+        }
+    </style>
+</head>
+
+<body style="background-color: white;">
+    <%- include('navbar', { user: user }) %>
+    <main>
+        <div class="ui container" style="margin-top: 40px;">
+            <h2>Create New Post</h2>
+            <form class="ui form" action="/posts" method="POST" onsubmit="return checkForm(this);">
+                <div class="field">
+                    <label>Title</label>
+                    <input type="text" name="title" placeholder="Post Title" required maxlength="100"
+                        oninput="updateCounter(this);">
+                    <small>0/100</small>
+                </div>
+                <div class="field">
+                    <label>Content</label>
+                    <textarea name="content" placeholder="Post Content" required maxlength="5000"
+                        oninput="updateCounter(this);"></textarea>
+                    <small>0/5000</small>
+                </div>
+                <button class="ui button blue" type="submit">Submit</button>
+            </form>
+        </div>
+    </main>
+    <%- include('./footer') %>
+
+    <script>
+        function updateCounter(input) {
+            const counter = input.nextElementSibling;
+            counter.textContent = `${input.value.length}/${input.maxLength}`;
+        }
+
+        function checkForm(form) {
+            // Check if the form data exceeds the limits before submitting
+            if (form.title.value.length > 100 || form.content.value.length > 5000) {
+                alert("Your post exceeds the maximum allowed length.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+
+</html>

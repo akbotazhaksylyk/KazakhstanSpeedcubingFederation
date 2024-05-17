@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="icon" type="image/png" href="/assets/logo.PNG" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="og:image"
+        content='https://www.worldcubeassociation.org/assets/og-wca_logo-d7533638dbb753b45e9969280ca4c13215fdb53774a27a451164066a016b2190.png' />
+    <title>Регистрация</title>
+    <script>
+        window.wca = {
+            currentLocale: 'ru',
+        };
+    </script>
+    <link rel="stylesheet"
+        href="../assets/application-104daffa3b320a58f11016d47fee1fb960924ba3213bbfc5e882be55bc27d571.css" media="all" />
+    <script src="../packs/js/runtime-7938f75aaf6de578850c.js"></script>
+    <script src="../packs/js/jquery-67644508c82866575bb3.js"></script>
+    <script src="../packs/js/vendor-840231f5ebc79c0cd90e.js"></script>
+    <script src="../packs/js/347-28f7bd8610cbcaa720eb.js"></script>
+    <script src="../packs/js/0-8d10846f05af5784b89f.js"></script>
+    <script src="../packs/js/204-1f44bcbfd1418fbb1826.js"></script>
+    <script src="../packs/js/127-a422b96ea63a18b084a2.js"></script>
+    <script src="../packs/js/792-977c22b0298c87dc1071.js"></script>
+    <script src="../packs/js/823-b4f1821a45008377a972.js"></script>
+    <!-- <script src="../packs/js/460-3d0afc38ed7ccdbd5777.js"></script> -->
+    <script src="../packs/js/995-baa8cb3216a06b60cd05.js"></script>
+    <script src="../packs/js/754-6b0343cb1fb7f87a2218.js"></script>
+    <!-- <script src="../packs/js/application-66b3a689fb12470f135d.js"></script> -->
+    <script src="../packs/js/global_styles-68a018c9be13dbd29fd4.js"></script>
+    <script src="../packs/js/i18n-18a97bc05f4da1c82f28.js"></script>
+    <script src="../packs/js/lodash_utils-59c0f4ace4648fe0ba89.js"></script>
+    <link rel="stylesheet" href="../packs/css/216-36035357.css" />
+    <link rel="stylesheet" href="../packs/css/272-5854f64f.css" />
+    <link rel="stylesheet" href="../packs/css/347-377360ff.css" />
+    <link rel="stylesheet" href="../packs/css/773-94f5ca70.css" />
+    <script src="../assets/application-3420a68b5ecd97b428e153fac926004c768a766bf077eb68f308318449b3c4b4.js"></script>
+    <!-- <script src="../assets/locales/ru-ff45443e708b20a11f21a1e5ad8118aecc36b81ccb2fe6b6d93da53b94ec7af7.js"></script> -->
+    <meta name="csrf-param" content="authenticity_token" />
+    <meta name="csrf-token"
+        content="GhFO-0NncKZGwldvOt2lwHKcSiG3l2cyepVtKVBS1CMxmWcECdGMKPl-LezZWiBAA8i-0r1Rn_oUBl6KfPnxVQ" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+
+<body data-rails-controller-name="registrations" data-rails-controller-action-name="new" style="background-color: white;">
+    <%- include('../navbar', { user: user }) %>
+        <main>
+            <div id="flash-alerts" class="container"></div>
+            <div class="container"></div>
+            <div class="container">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>Регистрация</h4>
+                    </div>
+                    <div class="panel-body">
+                        <% if (locals.messages && locals.messages.error) { %>
+                            <% locals.messages.error.forEach(function(message) { %>
+                                <div class="alert alert-danger">
+                                    <%= message %>
+                                </div>
+                                <% }); %>
+                                    <% } %>
+                                        <form class="simple_form are-you-sure no-submit-on-enter" id="new_user"
+                                            novalidate="novalidate" action="/users" accept-charset="UTF-8" method="POST"
+                                            onsubmit="onClick(event)">
+                                            <input type="hidden" name="authenticity_token"
+                                                value="LNpv1-ruOIbemAamdsCHIYfrDrtTTgKf2HOLfJoufHV849fsSRNeYis8QA33AmyOfluOPzP7ipFx-g3UfWxOWw"
+                                                autocomplete="off" />
+                                            <div class="form-group email required user_email">
+                                                <label class="control-label email required"
+                                                    for="user_email">Email</label>
+                                                <input class="form-control string email required" autofocus="autofocus"
+                                                    required="required" aria-required="true" maxlength="191"
+                                                    pattern="\A[^@\s]+@[^@\s]+\z" type="email" size="191" value=""
+                                                    name="user[email]" id="user_email" />
+                                            </div>
+                                            <div class="form-group password required user_password">
+                                                <label class="control-label password required"
+                                                    for="user_password">Пароль</label>
+                                                <input class="form-control password required" required="required"
+                                                    aria-required="true" maxlength="128" size="128" type="password"
+                                                    name="user[password]" id="user_password" />
+                                            </div>
+                                            <div class="form-group password required user_password_confirmation">
+                                                <label class="control-label password required"
+                                                    for="user_password_confirmation">Подтверждение пароля</label>
+                                                <input class="form-control password required" required="required"
+                                                    aria-required="true" type="password"
+                                                    name="user[password_confirmation]"
+                                                    id="user_password_confirmation" />
+                                            </div>
+                                            <label for="have-you-competed-accordion">Заполните пожалуйста форму</label>
+                                            <div class="panel-group" id="have-you-competed-accordion" role="tablist">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading" role="tab" id="never-competed-heading">
+                                                        <p class="panel-title">
+                                                            <a href="#never-competed" aria-controls="never-competed"
+                                                                role="button" data-toggle="collapse"
+                                                                data-parent="#have-you-competed-accordion">Информация об
+                                                                участнике
+                                                            </a>
+                                                        </p>
+                                                    </div>
+                                                    <div role="tabpanel" class="panel-collapse collapse"
+                                                        id="never-competed" aria-labelledby="never-competed-heading">
+                                                        <div class="panel-body">
+                                                            <p>
+                                                                Добро пожаловать! Прежде чем вы сможете поучаствовать в
+                                                                вашем
+                                                                первом
+                                                                соревновании, нам нужно спросить у вас некоторую
+                                                                информацию.
+                                                                Обратите
+                                                                внимание, что ваша дата рождения не будет опубликована
+                                                                без
+                                                                вашего
+                                                                согласия.<br />
+                                                                <br />
+                                                                Если вы регистрируете другого человека, пожалуйста,
+                                                                предоставьте
+                                                                информацию
+                                                                <strong>об участнике</strong>
+                                                                .
+
+                                                            </p>
+                                                            <div class="form-group string optional user_name">
+                                                                <label class="control-label string optional"
+                                                                    for="user_name">Полное
+                                                                    имя</label>
+                                                                <input class="form-control string optional"
+                                                                    maxlength="255" size="255" type="text"
+                                                                    name="user[name]" id="user_name" />
+                                                                <p class="help-block">
+                                                                    Введите имя и фамилию участника.
+                                                                </p>
+                                                            </div>
+                                                            <div class="form-group date_picker optional user_dob">
+                                                                <label class="control-label date_picker optional"
+                                                                    for="user_dob">День
+                                                                    рождения</label>
+                                                                <div class="input-group date datetimepicker">
+                                                                    <input
+                                                                        class="form-control string date_picker optional"
+                                                                        placeholder="ГГГГ-ММ-ДД" type="text"
+                                                                        autocomplete="off"
+                                                                        data-date-options="{&quot;locale&quot;:&quot;ru&quot;,&quot;format&quot;:&quot;YYYY-MM-DD&quot;,&quot;dayViewHeaderFormat&quot;:&quot;MMMM YYYY&quot;}"
+                                                                        name="user[dob]" id="user_dob" />
+                                                                </div>
+                                                                <p class="help-block">Введите день рождения участника.
+                                                                </p>
+                                                            </div>
+                                                            <div class="form-group enum optional user_gender">
+                                                                <label class="control-label enum optional"
+                                                                    for="user_gender">Пол</label>
+                                                                <select class="form-control enum optional form-control"
+                                                                    name="user[gender]" id="user_gender">
+                                                                    <option value="m">Мужской</option>
+                                                                    <option value="f">Женский</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group select optional user_country_iso2">
+                                                                <label class="control-label select optional"
+                                                                    for="user_country_iso2">Гражданство</label>
+                                                                <select class="form-control select optional"
+                                                                    name="user[country_iso2]" id="user_country_iso2">
+                                                                    <option value="KZ">Казахстан</option>
+                                                                    <hr>
+                                                                    <option value="AZ">Азербайджан</option>
+                                                                    <option value="AM">Армения</option>
+                                                                    <option value="BY">Беларусь</option>
+                                                                    <option value="KG">Кыргызстан</option>
+                                                                    <option value="MD">Молдова</option>
+                                                                    <option value="RU">Россия</option>
+                                                                    <option value="TJ">Таджикистан</option>
+                                                                    <option value="TM">Туркменистан</option>
+                                                                    <option value="UZ">Узбекистан</option>
+                                                                    <option value="UA">Украина</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <input autocomplete="off" type="hidden" name="user[claiming_wca_id]"
+                                                id="user_claiming_wca_id" />
+
+                                            <!-- <div data-sitekey="6LdEa8MpAAAAACgYOKY-OZissgr8Av1aOcxuC_QR"
+                                                class="g-recaptcha ">
+                                            </div>
+
+                                            <noscript>
+                                                <div>
+                                                    <div style="width: 302px; height: 422px; position: relative;">
+                                                        <div style="width: 302px; height: 422px; position: absolute;">
+                                                            <iframe
+                                                                src="https://www.recaptcha.net/recaptcha/api/fallback?k=6LdEa8MpAAAAACgYOKY-OZissgr8Av1aOcxuC_QR"
+                                                                name="ReCAPTCHA"
+                                                                style="width: 302px; height: 422px; border-style: none; border: 0; overflow: hidden;"></iframe>
+                                                        </div>
+                                                    </div>
+                                                    <div style="width: 300px; height: 60px; border-style: none;
+                bottom: 12px; left: 25px; margin: 0px; padding: 0px; right: 25px;
+                background: #f9f9f9; border: 1px solid #c1c1c1; border-radius: 3px;">
+                                                        <textarea id="g-recaptcha-response" name="g-recaptcha-response"
+                                                            class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid #c1c1c1;
+                  margin: 10px 25px; padding: 0px; resize: none;"></textarea>
+                                                    </div>
+                                                </div>
+                                            </noscript> -->
+                                            <br>
+                                            <input type="submit" name="commit" value="Регистрация"
+                                                class="btn btn-primary" onclick="onClick(event)" />
+                                        </form>
+                    </div>
+                </div>
+            </div>
+            <script>
+                // Функция для валидации формы перед отправкой
+                function validateForm() {
+                    var fields = [
+                        { id: 'user_email', name: 'Email' },
+                        { id: 'user_password', name: 'Пароль' },
+                        { id: 'user_password_confirmation', name: 'Подтверждение пароля' },
+                        { id: 'user_name', name: 'Полное имя' },
+                        { id: 'user_dob', name: 'День рождения' },
+                        // Добавьте другие поля, если это необходимо
+                    ];
+
+                    for (var field of fields) {
+                        var value = document.getElementById(field.id).value;
+                        if (!value) {
+                            alert('Пожалуйста, заполните поле ' + field.name + '.');
+                            return false;
+                        }
+                    }
+
+                    // Проверяем совпадение паролей
+                    var password = document.getElementById('user_password').value;
+                    var confirmPassword = document.getElementById('user_password_confirmation').value;
+                    if (password !== confirmPassword) {
+                        alert('Пароли не совпадают!');
+                        return false;
+                    }
+
+                    return true;
+                }
+            </script>
+        </main>
+        <%- include('../footer') %>
+</body>
+
+</html>

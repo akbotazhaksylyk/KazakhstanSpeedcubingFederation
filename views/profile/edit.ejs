@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="icon" type="image/png" href="/assets/logo.PNG" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="og:image"
+        content='https://www.worldcubeassociation.org/assets/og-wca_logo-d7533638dbb753b45e9969280ca4c13215fdb53774a27a451164066a016b2190.png' />
+    <meta name="description"
+        content="The World Cube Association governs competitions for mechanical puzzles that are operated by twisting groups of pieces, commonly known as 'twisty puzzles'. The most famous of these puzzles is the Rubik's Cube, invented by professor Rubik from Hungary. A selection of these puzzles are chosen as official events of the WCA.">
+    <title>
+        <%= user.name %>
+    </title>
+    <script>
+        window.wca = {
+            currentLocale: 'ru',
+        };
+    </script>
+    <link rel="stylesheet"
+        href="/assets/application-104daffa3b320a58f11016d47fee1fb960924ba3213bbfc5e882be55bc27d571.css" media="all" />
+    <script src="/packs/js/runtime-7938f75aaf6de578850c.js"></script>
+    <script src="/packs/js/jquery-67644508c82866575bb3.js"></script>
+    <script src="/packs/js/vendor-840231f5ebc79c0cd90e.js"></script>
+    <script src="/packs/js/347-28f7bd8610cbcaa720eb.js"></script>
+    <script src="/packs/js/0-8d10846f05af5784b89f.js"></script>
+    <script src="/packs/js/631-aacb4cab1b36fd6ff475.js"></script>
+    <script src="/packs/js/127-a422b96ea63a18b084a2.js"></script>
+    <script src="/packs/js/792-977c22b0298c87dc1071.js"></script>
+    <script src="/packs/js/859-a5e58660b6252ab0a14f.js"></script>
+    <script src="/packs/js/460-9bdc389516d1e50b682a.js"></script>
+    <script src="/packs/js/995-c3a651ac536a4ce573e4.js"></script>
+    <script src="/packs/js/754-65e56a3d11b37e81be74.js"></script>
+    <script src="/packs/js/application-9dac303dd91ba571e30f.js"></script>
+    <script src="/packs/js/global_styles-68a018c9be13dbd29fd4.js"></script>
+    <script src="/packs/js/i18n-8b73092f42262426f854.js"></script>
+    <script src="/packs/js/lodash_utils-59c0f4ace4648fe0ba89.js"></script>
+    <link rel="stylesheet" href="/packs/css/216-36035357.css" />
+    <link rel="stylesheet" href="/packs/css/272-5854f64f.css" />
+    <link rel="stylesheet" href="/packs/css/347-1b298972.css" />
+    <link rel="stylesheet" href="/packs/css/773-997372a2.css" />
+    <script src="/assets/application-3420a68b5ecd97b428e153fac926004c768a766bf077eb68f308318449b3c4b4.js"></script>
+    <script src="/assets/locales/ru-ff45443e708b20a11f21a1e5ad8118aecc36b81ccb2fe6b6d93da53b94ec7af7.js"></script>
+    <meta name="csrf-param" content="authenticity_token" />
+    <meta name="csrf-token"
+        content="rMFR8kA_CgYIL8vjVz-n5T5n_YxHhTZxEAibM2nJNJX8Nb2i4hikZzgLyaPMRkcg025Prur9__ftiwqEaXJMKw" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://www.worldcubeassociation.org/rss.xml" />
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body data-rails-controller-name="users" data-rails-controller-action-name="edit" style="background-color: white;">
+    <%- include('../navbar', { user: user }) %>
+        <main>
+            <div id="flash-alerts" class="container"></div>
+            <div class="container"></div>
+            <div class="container">
+                <h1 class="text-center">
+                    <%= user.name %> (<a href="mailto:<%= user.email %>">
+                            <%= user.email %>
+                        </a>)
+                </h1>
+                <ul class="nav nav-tabs nav-justified">
+                    <li>
+                        <a href="#general" data-toggle="tab">Общее</a>
+                    </li>
+                    <li>
+                        <a href="#email-update-form" data-toggle="tab">Email</a>
+                    </li>
+                    <!-- <li>
+                        <a href="#preferences" data-toggle="tab">Предпочтения</a>
+                    </li> -->
+                    <li>
+                        <a href="#password-update-form" data-toggle="tab">Пароль</a>
+                    </li>
+                    <li>
+                        <a href="#avatar" data-toggle="tab">Аватарка</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="edit-user-tabs">
+                    <div class="tab-pane" id="general">
+                        <form class="simple_form are-you-sure" id="edit_user" novalidate="novalidate"
+                            action="/profile/update" accept-charset="UTF-8" method="post">
+                            <div class="form-group string optional disabled user_name">
+                                <label class="control-label string optional disabled" for="user_name">Полное имя</label>
+                                <input class="form-control string optional disabled" maxlength="255" size="255"
+                                    type="text" value="<%= user.name %>" name="name" />
+                                <p class="help-block">
+                                    Введите имя и фамилию участника.
+                                </p>
+                            </div>
+                            <div class="form-group date_picker optional disabled user_dob">
+                                <label class="control-label date_picker optional disabled" for="user_dob">День
+                                    рождения</label>
+                                <div class="input-group date datetimepicker">
+                                    <% const date=new Date(user.birthday); %>
+                                        <input class="form-control string date_picker optional disabled"
+                                            placeholder="ГГГГ-ММ-ДД" type="text" autocomplete="off"
+                                            data-date-options='{"locale":"ru","format":"YYYY-MM-DD","dayViewHeaderFormat":"MMMM YYYY"}'
+                                            value="<%= date.toISOString().slice(0, 10) %>" name="birthday"
+                                            id="user_dob" />
+                                </div>
+                                <p class="help-block">Введите день рождения участника. В формате ГГГГ-ММ-ДД.</p>
+                            </div>
+
+                            <div class="form-group enum optional disabled user_gender">
+                                <label class="control-label enum optional disabled" for="user_gender">Пол</label>
+                                <select class="form-control enum optional disabled form-control" name="sex">
+                                    <option value="m" <%=user.sex==='m' ? 'selected="selected"' : '' %>>Мужской</option>
+                                    <option value="f" <%=user.sex==='f' ? 'selected="selected"' : '' %>>Женский</option>
+                                </select>
+                            </div>
+                            <div class="form-group select optional disabled user_country_iso2">
+                                <label class="control-label select optional disabled"
+                                    for="user_country_iso2">Гражданство</label>
+                                <select class="form-control select optional " name="country">
+                                    <option value="KZ" <%=user.country==="KZ" ? 'selected = "selected"' : '' %>
+                                        >Казахстан</option>
+                                    <hr>
+                                    <option value="AZ" <%=user.country==="AZ" ? 'selected = "selected"' : '' %>
+                                        >Азербайджан</option>
+                                    <option value="AM" <%=user.country==="AM" ? 'selected = "selected"' : '' %>>Армения
+                                    </option>
+                                    <option value="BY" <%=user.country==="BY" ? 'selected = "selected"' : '' %>>Беларусь
+                                    </option>
+                                    <option value="KG" <%=user.country==="KG" ? 'selected = "selected"' : '' %>
+                                        >Кыргызстан</option>
+                                    <option value="MD" <%=user.country==="MD" ? 'selected = "selected"' : '' %>>Молдова
+                                    </option>
+                                    <option value="RU" <%=user.country==="RU" ? 'selected = "selected"' : '' %>>Россия
+                                    </option>
+                                    <option value="TJ" <%=user.country==="TJ" ? 'selected = "selected"' : '' %>
+                                        >Таджикистан</option>
+                                    <option value="TM" <%=user.country==="TM" ? 'selected = "selected"' : '' %>
+                                        >Туркменистан</option>
+                                    <option value="UZ" <%=user.country==="UZ" ? 'selected = "selected"' : '' %>
+                                        >Узбекистан</option>
+                                    <option value="UA" <%=user.country==="UA" ? 'selected = "selected"' : '' %>>Украина
+                                    </option>
+                                </select>
+                            </div>
+                            <input type="submit" name="commit" value="Сохранить" class="btn btn-primary"
+                                data-disable-with="Сохранить" />
+                            <input type="submit" name="commit" value="Удалить аккаунт" class="btn btn-danger delete-btn"
+                                data-disable-with="Удаление..." />
+                        </form>
+                    </div>
+
+                    <!-- Форма 2FA -->
+                    <div class="tab-pane" id="form-2fa">
+                        <div class="alert alert-info">Для продолжения необходимо подтверждение вашего пароля.</div>
+                        <form id="form-2fa" action="/users/authenticate-sensitive" method="post">
+                            <div class="form-group password optional user_password">
+                                <label class="control-label password optional" for="user_password">Пароль</label>
+                                <input class="form-control" type="password" name="password" id="user_password" />
+                            </div>
+                            <input type="submit" name="commit" value="Подтвердить и продолжить"
+                                class="btn btn-primary" />
+                        </form>
+                    </div>
+
+                    <!-- Форма обновления Email -->
+                    <div class="tab-pane" id="email-update-form">
+                        <div class="alert alert-info">Для продолжения необходимо подтверждение вашего пароля.</div>
+                        <form id="email-change-form">
+                            <label for="password">Ваш пароль:</label>
+                            <input class="form-control" type="password" name="password" id="password" required>
+                            <br>
+                            <label for="newEmail">Новый email:</label>
+                            <input class="form-control" type="email" name="newEmail" id="newEmail" required>
+                            <br>
+                            <input type="submit" name="commit" value="Сохранить" class="btn btn-primary"
+                                data-disable-with="Обновить Email" />
+                        </form>
+                    </div>
+
+                    <!-- Форма обновления пароля -->
+                    <div class="tab-pane" id="password-update-form">
+                        <div class="alert alert-info">Для продолжения необходимо подтверждение вашего пароля.</div>
+                        <form id="password-change-form">
+                            <label for="oldPassword">Старый пароль:</label>
+                            <input class="form-control" type="password" name="oldPassword" id="oldPassword" required>
+                            <br>
+                            <label for="newPassword">Новый пароль:</label>
+                            <input class="form-control" type="password" name="newPassword" id="newPassword" required>
+                            <br>
+                            <label for="confirmNewPassword">Подтвердите новый пароль:</label>
+                            <input class="form-control" type="password" name="confirmNewPassword"
+                                id="confirmNewPassword" required>
+                            <br>
+                            <input type="submit" name="commit" value="Сохранить" class="btn btn-primary"
+                                data-disable-with="Обновить пароль" />
+                        </form>
+                    </div>
+
+                    <div class="tab-pane active" id="preferences">
+                        <form class="simple_form edit_user" id="edit_user" novalidate="novalidate" action="/users"
+                            accept-charset="UTF-8" method="post">
+                            <input type="hidden" name="_method" value="patch" autocomplete="off" />
+                            <input type="hidden" name="authenticity_token"
+                                value="NnfD9oXD5ceFtH3KKr7p-37u0uAs6rh-SYdKqFuL_eegVTCZZnbV7DZTq2AF8Bh0NwIpMQDxBjJCoibNKalYpw"
+                                autocomplete="off" />
+                            <input type="hidden" name="section" id="section" value="preferences" autocomplete="off" />
+                            <div class="form-group ">
+                                <label class="associated-events-label" for="user_preferred_events">
+                                    Предпочитаемые дисциплины (<span class="events-selected-count"></span>
+                                    )
+                                    <br />
+                                    <button type="button" class="btn btn-primary btn-xs select-all-events">Все</button>
+                                    <button type="button"
+                                        class="btn btn-default btn-xs clear-all-events">Сбросить</button>
+                                </label>
+                                <div id="user_preferred_events" class="associated-events">
+                                    <span class="event-checkbox ">
+                                        <input autocomplete="off" type="hidden" value="333"
+                                            name="user[user_preferred_events_attributes][0][event_id]"
+                                            id="user_user_preferred_events_attributes_0_event_id">
+                                        <label for="user_preferred_events_333">
+                                            <input name="user[user_preferred_events_attributes][0][_destroy]"
+                                                type="hidden" value="1" autocomplete="off"><input
+                                                id="user_preferred_events_333" type="checkbox" value="0"
+                                                name="user[user_preferred_events_attributes][0][_destroy]">
+                                            <i data-toggle="tooltip" data-placement="top" title=""
+                                                class=" cubing-icon icon event-333"
+                                                data-original-title="Кубик 3x3x3"></i>
+                                        </label> <input autocomplete="off" type="hidden"
+                                            name="user[user_preferred_events_attributes][0][id]"
+                                            id="user_user_preferred_events_attributes_0_id">
+                                    </span>
+
+                                    <span class="event-checkbox ">
+                                        <input autocomplete="off" type="hidden" value="222"
+                                            name="user[user_preferred_events_attributes][1][event_id]"
+                                            id="user_user_preferred_events_attributes_1_event_id">
+                                        <label for="user_preferred_events_222">
+                                            <input name="user[user_preferred_events_attributes][1][_destroy]"
+                                                type="hidden" value="1" autocomplete="off"><input
+                                                id="user_preferred_events_222" type="checkbox" value="0"
+                                                name="user[user_preferred_events_attributes][1][_destroy]">
+                                            <i data-toggle="tooltip" data-placement="top" title=""
+                                                class=" cubing-icon icon event-222"
+                                                data-original-title="Кубик 2x2x2"></i>
+                                        </label> <input autocomplete="off" type="hidden"
+                                            name="user[user_preferred_events_attributes][1][id]"
+                                            id="user_user_preferred_events_attributes_1_id">
+                                    </span>
+
+                                    <span class="event-checkbox ">
+                                        <input autocomplete="off" type="hidden" value="444"
+                                            name="user[user_preferred_events_attributes][2][event_id]"
+                                            id="user_user_preferred_events_attributes_2_event_id">
+                                        <label for="user_preferred_events_444">
+                                            <input name="user[user_preferred_events_attributes][2][_destroy]"
+                                                type="hidden" value="1" autocomplete="off"><input
+                                                id="user_preferred_events_444" type="checkbox" value="0"
+                                                name="user[user_preferred_events_attributes][2][_destroy]">
+                                            <i data-toggle="tooltip" data-placement="top" title=""
+                                                class=" cubing-icon icon event-444"
+                                                data-original-title="Кубик 4x4x4"></i>
+                                        </label> <input autocomplete="off" type="hidden"
+                                            name="user[user_preferred_events_attributes][2][id]"
+                                            id="user_user_preferred_events_attributes_2_id">
+                                    </span>
+
+                                    <span class="event-checkbox ">
+                                        <input autocomplete="off" type="hidden" value="555"
+                                            name="user[user_preferred_events_attributes][3][event_id]"
+                                            id="user_user_preferred_events_attributes_3_event_id">
+                                        <label for="user_preferred_events_555">
+                                            <input name="user[user_preferred_events_attributes][3][_destroy]"
+                                                type="hidden" value="1" autocomplete="off"><input
+                                                id="user_preferred_events_555" type="checkbox" value="0"
+                                                name="user[user_preferred_events_attributes][3][_destroy]">
+                                            <i data-toggle="tooltip" data-placement="top" title=""
+                                                class=" cubing-icon icon event-555"
+                                                data-original-title="Кубик 5x5x5"></i>
+                                        </label> <input autocomplete="off" type="hidden"
+                                            name="user[user_preferred_events_attributes][3][id]"
+                                            id="user_user_preferred_events_attributes_3_id">
+                                    </span>
+
+                                    <span class="event-checkbox ">
+                                        <input autocomplete="off" type="hidden" value="666"
+                                            name="user[user_preferred_events_attributes][4][event_id]"
+                                            id="user_user_preferred_events_attributes_4_event_id">
+                                        <label for="user_preferred_events_666">
+                                            <input name="user[user_preferred_events_attributes][4][_destroy]"
+                                                type="hidden" value="1" autocomplete="off"><input
+                                                id="user_preferred_events_666" type="checkbox" value="0"
+                                                name="user[user_preferred_events_attributes][4][_destroy]">
+                                            <i data-toggle="tooltip" data-placement="top" title=""
+                                                class=" cubing-icon icon event-666"
+                                                data-original-title="Кубик 6x6x6"></i>
+                                        </label> <input autocomplete="off" type="hidden"
+                                            name="user[user_preferred_events_attributes][4][id]"
+                                            id="user_user_preferred_events_attributes_4_id">
+                                    </span>
+
+                                    <span class="event-checkbox ">
+                                        <input autocomplete="off" type="hidden" value="777"
+                                            name="user[user_preferred_events_attributes][5][event_id]"
+                                            id="user_user_preferred_events_attributes_5_event_id">
+                                        <label for="user_preferred_events_777">
+                                            <input name="user[user_preferred_events_attributes][5][_destroy]"
+                                                type="hidden" value="1" autocomplete="off"><input
+                                                id="user_preferred_events_777" type="checkbox" value="0"
+                                                name="user[user_preferred_events_attributes][5][_destroy]">
+                                            <i data-toggle="tooltip" data-placement="top" title=""
+                                                class=" cubing-icon icon event-777"
+                                                data-original-title="Кубик 7x7x7"></i>
+                                        </label> <input autocomplete="off" type="hidden"
+                                            name="user[user_preferred_events_attributes][5][id]"
+                                            id="user_user_preferred_events_attributes_5_id">
+                                    </span>
+
+                                    <span class="event-checkbox ">
+                                        <input autocomplete="off" type="hidden" value="333bf"
+                                            name="user[user_preferred_events_attributes][6][event_id]"
+                                            id="user_user_preferred_events_attributes_6_event_id">
+                                        <label for="user_preferred_events_333bf">
+                                            <input name="user[user_preferred_events_attributes][6][_destroy]"
+                                                type="hidden" value="1" autocomplete="off"><input
+                                                id="user_preferred_events_333bf" type="checkbox" value="0"
+                                                name="user[user_preferred_events_attributes][6][_destroy]">
+                                            <i data-toggle="tooltip" data-placement="top" title=""
+                                                class=" cubing-icon icon event-333bf"
+                                                data-original-title="3x3x3 вслепую"></i>
+                                        </label> <input autocomplete="off" type="hidden"
+                                            name="user[user_preferred_events_attributes][6][id]"
+                                            id="user_user_preferred_events_attributes_6_id">
+                                    </span>
+
+                                    <span class="event-checkbox ">
+                                        <input autocomplete="off" type="hidden" value="333fm"
+                                            name="user[user_preferred_events_attributes][7][event_id]"
+                                            id="user_user_preferred_events_attributes_7_event_id">
+                                        <label for="user_preferred_events_333fm">
+                                            <input name="user[user_preferred_events_attributes][7][_destroy]"
+                                                type="hidden" value="1" autocomplete="off"><input
+                                                id="user_preferred_events_333fm" type="checkbox" value="0"
+                                                name="user[user_preferred_events_attributes][7][_destroy]">
+                                            <i data-toggle="tooltip" data-placement="top" title=""
+                                                class=" cubing-icon icon event-333fm"
+                                                data-original-title="Сборка 3x3x3 на количество ходов"></i>
+                                        </label> <input autocomplete="off" type="hidden"
+                                            name="user[user_preferred_events_attributes][7][id]"
+                                            id="user_user_preferred_events_attributes_7_id">
+                                    </span>
+
+                                    <span class="event-checkbox ">
+                                        <input autocomplete="off" type="hidden" value="333oh"
+                                            name="user[user_preferred_events_attributes][8][event_id]"
+                                            id="user_user_preferred_events_attributes_8_event_id">
+                                        <label for="user_preferred_events_333oh">
+                                            <input name="user[user_preferred_events_attributes][8][_destroy]"
+                                                type="hidden" value="1" autocomplete="off"><input
+                                                id="user_preferred_events_333oh" type="checkbox" value="0"
+                                                name="user[user_preferred_events_attributes][8][_destroy]">
+                                            <i data-toggle="tooltip" data-placement="top" title=""
+                                                class=" cubing-icon icon event-333oh"
+                                                data-original-title="3x3x3 одной рукой"></i>
+                                        </label> <input autocomplete="off" type="hidden"
+                                            name="user[user_preferred_events_attributes][8][id]"
+                                            id="user_user_preferred_events_attributes_8_id">
+                                    </span>
+
+                                    <span class="event-checkbox ">
+                                        <input autocomplete="off" type="hidden" value="clock"
+                                            name="user[user_preferred_events_attributes][9][event_id]"
+                                            id="user_user_preferred_events_attributes_9_event_id"
+                                            control-id="ControlID-12">
+                                        <label for="user_preferred_events_clock">
+                                            <input name="user[user_preferred_events_attributes][9][_destroy]"
+                                                type="hidden" value="1" autocomplete="off"><input
+                                                id="user_preferred_events_clock" type="checkbox" value="0"
+                                                name="user[user_preferred_events_attributes][9][_destroy]">
+                                            <i data-toggle="tooltip" data-placement="top" title=""
+                                                class=" cubing-icon icon event-clock" data-original-title="Clock"></i>
+                                        </label> <input autocomplete="off" type="hidden"
+                                            name="user[user_preferred_events_attributes][9][id]"
+                                            id="user_user_preferred_events_attributes_9_id">
+                                    </span>
+
+                                    <span class="event-checkbox ">
+                                        <input autocomplete="off" type="hidden" value="minx"
+                                            name="user[user_preferred_events_attributes][10][event_id]"
+                                            id="user_user_preferred_events_attributes_10_event_id">
+                                        <label for="user_preferred_events_minx">
+                                            <input name="user[user_preferred_events_attributes][10][_destroy]"
+                                                type="hidden" value="1" autocomplete="off"><input
+                                                id="user_preferred_events_minx" type="checkbox" value="0"
+                                                name="user[user_preferred_events_attributes][10][_destroy]">
+                                            <i data-toggle="tooltip" data-placement="top" title=""
+                                                class=" cubing-icon icon event-minx"
+                                                data-original-title="Мегаминкс"></i>
+                                        </label> <input autocomplete="off" type="hidden"
+                                            name="user[user_preferred_events_attributes][10][id]"
+                                            id="user_user_preferred_events_attributes_10_id">
+                                    </span>
+
+                                    <span class="event-checkbox ">
+                                        <input autocomplete="off" type="hidden" value="pyram"
+                                            name="user[user_preferred_events_attributes][11][event_id]"
+                                            id="user_user_preferred_events_attributes_11_event_id">
+                                        <label for="user_preferred_events_pyram">
+                                            <input name="user[user_preferred_events_attributes][11][_destroy]"
+                                                type="hidden" value="1" autocomplete="off"><input
+                                                id="user_preferred_events_pyram" type="checkbox" value="0"
+                                                name="user[user_preferred_events_attributes][11][_destroy]">
+                                            <i data-toggle="tooltip" data-placement="top" title=""
+                                                class=" cubing-icon icon event-pyram"
+                                                data-original-title="Пираминкс"></i>
+                                        </label> <input autocomplete="off" type="hidden"
+                                            name="user[user_preferred_events_attributes][11][id]"
+                                            id="user_user_preferred_events_attributes_11_id">
+                                    </span>
+
+                                    <span class="event-checkbox ">
+                                        <input autocomplete="off" type="hidden" value="skewb"
+                                            name="user[user_preferred_events_attributes][12][event_id]"
+                                            id="user_user_preferred_events_attributes_12_event_id">
+                                        <label for="user_preferred_events_skewb">
+                                            <input name="user[user_preferred_events_attributes][12][_destroy]"
+                                                type="hidden" value="1" autocomplete="off"><input
+                                                id="user_preferred_events_skewb" type="checkbox" value="0"
+                                                name="user[user_preferred_events_attributes][12][_destroy]">
+                                            <i data-toggle="tooltip" data-placement="top" title=""
+                                                class=" cubing-icon icon event-skewb" data-original-title="Скьюб"></i>
+                                        </label> <input autocomplete="off" type="hidden"
+                                            name="user[user_preferred_events_attributes][12][id]"
+                                            id="user_user_preferred_events_attributes_12_id">
+                                    </span>
+
+                                    <span class="event-checkbox ">
+                                        <input autocomplete="off" type="hidden" value="sq1"
+                                            name="user[user_preferred_events_attributes][13][event_id]"
+                                            id="user_user_preferred_events_attributes_13_event_id">
+                                        <label for="user_preferred_events_sq1">
+                                            <input name="user[user_preferred_events_attributes][13][_destroy]"
+                                                type="hidden" value="1" autocomplete="off"><input
+                                                id="user_preferred_events_sq1" type="checkbox" value="0"
+                                                name="user[user_preferred_events_attributes][13][_destroy]">
+                                            <i data-toggle="tooltip" data-placement="top" title=""
+                                                class=" cubing-icon icon event-sq1" data-original-title="Square-1"></i>
+                                        </label> <input autocomplete="off" type="hidden"
+                                            name="user[user_preferred_events_attributes][13][id]"
+                                            id="user_user_preferred_events_attributes_13_id">
+                                    </span>
+
+                                    <span class="event-checkbox ">
+                                        <input autocomplete="off" type="hidden" value="444bf"
+                                            name="user[user_preferred_events_attributes][14][event_id]"
+                                            id="user_user_preferred_events_attributes_14_event_id">
+                                        <label for="user_preferred_events_444bf">
+                                            <input name="user[user_preferred_events_attributes][14][_destroy]"
+                                                type="hidden" value="1" autocomplete="off"><input
+                                                id="user_preferred_events_444bf" type="checkbox" value="0"
+                                                name="user[user_preferred_events_attributes][14][_destroy]">
+                                            <i data-toggle="tooltip" data-placement="top" title=""
+                                                class=" cubing-icon icon event-444bf"
+                                                data-original-title="4x4x4 вслепую"></i>
+                                        </label> <input autocomplete="off" type="hidden"
+                                            name="user[user_preferred_events_attributes][14][id]"
+                                            id="user_user_preferred_events_attributes_14_id">
+                                    </span>
+
+                                    <span class="event-checkbox ">
+                                        <input autocomplete="off" type="hidden" value="555bf"
+                                            name="user[user_preferred_events_attributes][15][event_id]"
+                                            id="user_user_preferred_events_attributes_15_event_id">
+                                        <label for="user_preferred_events_555bf">
+                                            <input name="user[user_preferred_events_attributes][15][_destroy]"
+                                                type="hidden" value="1" autocomplete="off"><input
+                                                id="user_preferred_events_555bf" type="checkbox" value="0"
+                                                name="user[user_preferred_events_attributes][15][_destroy]">
+                                            <i data-toggle="tooltip" data-placement="top" title=""
+                                                class=" cubing-icon icon event-555bf"
+                                                data-original-title="5x5x5 вслепую"></i>
+                                        </label> <input autocomplete="off" type="hidden"
+                                            name="user[user_preferred_events_attributes][15][id]"
+                                            id="user_user_preferred_events_attributes_15_id">
+                                    </span>
+
+                                    <span class="event-checkbox ">
+                                        <input autocomplete="off" type="hidden" value="333mbf"
+                                            name="user[user_preferred_events_attributes][16][event_id]"
+                                            id="user_user_preferred_events_attributes_16_event_id">
+                                        <label for="user_preferred_events_333mbf">
+                                            <input name="user[user_preferred_events_attributes][16][_destroy]"
+                                                type="hidden" value="1" autocomplete="off"><input
+                                                id="user_preferred_events_333mbf" type="checkbox" value="0"
+                                                name="user[user_preferred_events_attributes][16][_destroy]">
+                                            <i data-toggle="tooltip" data-placement="top" title=""
+                                                class=" cubing-icon icon event-333mbf"
+                                                data-original-title="Мульти-блайнд"></i>
+                                        </label> <input autocomplete="off" type="hidden"
+                                            name="user[user_preferred_events_attributes][16][id]"
+                                            id="user_user_preferred_events_attributes_16_id">
+                                    </span>
+                                </div>
+                            </div>
+                            <span class="help-block">Укажите ваши любимые дисциплины, чтобы регистрироваться на
+                                соревнования быстрее.</span>
+                            <!-- <label for="notifications">Уведомления</label>
+                            <div id="notifications">
+                                <div class="form-group boolean optional user_results_notifications_enabled">
+                                    <div class="checkbox">
+                                        <input value="0" autocomplete="off" type="hidden"
+                                            name="user[results_notifications_enabled]" />
+                                        <label class="boolean optional" for="user_results_notifications_enabled">
+                                            <input class="boolean optional" type="checkbox" value="1" checked="checked"
+                                                name="user[results_notifications_enabled]"
+                                                id="user_results_notifications_enabled" />Отправлять мне Email, когда
+                                            мои результаты будут опубликованы.
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group boolean optional user_registration_notifications_enabled">
+                                    <div class="checkbox">
+                                        <input value="0" autocomplete="off" type="hidden"
+                                            name="user[registration_notifications_enabled]" />
+                                        <label class="boolean optional" for="user_registration_notifications_enabled">
+                                            <input class="boolean optional" type="checkbox" value="1"
+                                                name="user[registration_notifications_enabled]"
+                                                id="user_registration_notifications_enabled" />Сообщать мне по
+                                            электронной почте о новых регистрациях на соревнования, где я организатор
+                                            или делегат.
+                                        </label>
+                                    </div>
+                                    <p class="help-block">Это применяется только для соревнований, где вы организатор
+                                        или делегат. Вы можете изменить значение для каждого отдельного соревнования.
+                                    </p>
+                                </div>
+                            </div> -->
+                            <input type="submit" name="commit" value="Сохранить" class="btn btn-primary"
+                                data-disable-with="Сохранить" />
+                        </form>
+                    </div>
+                    <div class="tab-pane active" id="avatar">
+                        <div class="row">
+                            <!-- Text with instructions -->
+                            <div class="col-sm-6">
+                                <div class="well">
+                                    <h3>Указания</h3>
+                                    <ul>
+                                        <li>На аватарке должен быть существующий человек.</li>
+                                        <li>На аватарке должны быть вы.</li>
+                                        <li>Если на аватарке больше одного человека, должно быть понятно, кто из них вы.
+                                        </li>
+                                        <li>Ваша голова, но необязательно всё лицо, должна быть видна.</li>
+                                        <li>На аватарке не должно быть добавленных надписей или неестественных фильтров,
+                                            включая границы.</li>
+                                        <li>Аватарка должна быть правильно ориентирована.</li>
+                                        <li>Аватарка не должна быть оскорбительной (например, содержать оскорбительные
+                                            жесты).</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Image preview and file input -->
+                            <div class="col-sm-6">
+                                <div class="well">
+                                    <h3>Аватарка</h3>
+                                    <img id="imagePreview"
+                                        src="<%= user && user.avatarUrl && user.avatarUrl !== '/uploads/default.png' ? '/uploads/' + user.avatarUrl : '/uploads/default.png' %>"
+                                        class="img-responsive center-block" style="max-height: 400px;">
+
+                                    <!-- File input for new image -->
+                                    <input type="file" id="inputImage" class="form-control" style="margin-top: 10px;">
+
+                                    <!-- Hidden inputs for form submission -->
+                                    <input type="hidden" name="_method" value="patch">
+                                    <input type="hidden" name="authenticity_token" value="your_token_here">
+                                    <input type="hidden" name="section" value="avatar">
+
+                                    <button class="btn btn-primary mt-2" id="cropButton">Обрезать и Сохранить</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="roles">
+                        <div data-react-class="RolesTab" data-react-props="{&quot;userId&quot;:69328}"
+                            data-react-cache-id="RolesTab-0"></div>
+                    </div>
+                </div>
+                <script>
+                    $('a[href="#general"]').tab('show');
+                </script>
+            </div>
+        </main>
+        <%- include('../footer') %>
+            <script>
+                $(document).ready(function () {
+                    $('#password-change-form').submit(function (event) {
+                        event.preventDefault();
+                        var formData = $(this).serializeArray();
+                        var oldPassword = formData[0].value;
+                        var newPassword = formData[1].value;
+                        var confirmNewPassword = formData[2].value;
+
+                        if (newPassword !== confirmNewPassword) {
+                            alert('Новый пароль и/или подтверждение не совпадают!');
+                            return;
+                        }
+
+                        $.ajax({
+                            type: 'POST',
+                            url: '/profile/change-password',
+                            data: {
+                                oldPassword: oldPassword,
+                                newPassword: newPassword
+                            },
+                            success: function (response) {
+                                alert(response.message);
+                            },
+                            error: function () {
+                                alert('Ошибка при обновлении пароля. Проверьте пожалуйста, чтобы все было заполнено верно.');
+                            }
+                        });
+                    });
+
+                    $('#email-change-form').submit(function (event) {
+                        event.preventDefault();
+                        var formData = $(this).serialize();
+
+                        $.ajax({
+                            type: 'POST',
+                            url: '/profile/update-email',
+                            data: formData,
+                            success: function (response) {
+                                alert(response.message);
+                                if (response.success) {
+                                    // Refresh the page after a successful update
+                                    window.location.reload();
+                                }
+                            },
+                            error: function () {
+                                alert('Ошибка при обновлении email.');
+                            }
+                        });
+                    });
+                });
+
+                $(document).ready(function () {
+                    $('#edit_user').submit(function (event) {
+                        event.preventDefault(); // Предотвращаем стандартную отправку формы
+                        var formData = $(this).serialize(); // Сериализуем данные формы в строку запроса
+
+                        $.ajax({
+                            type: 'POST',
+                            url: '/profile/update',
+                            data: formData,
+                            success: function (response) {
+                                $('#flash-alerts').html('<div class="alert alert-success">Профиль успешно обновлен!</div>');
+                            },
+                            error: function () {
+                                $('#flash-alerts').html('<div class="alert alert-danger">Ошибка обновления профиля.</div>');
+                            }
+                        });
+                    });
+                });
+
+                document.querySelector('.delete-btn').addEventListener('click', function (event) {
+                    event.preventDefault();
+                    if (confirm('Вы уверены, что хотите удалить свой аккаунт?')) {
+                        // If user confirms, submit the form
+                        document.getElementById('edit_user').submit();
+                    }
+                });
+
+                var cropper;
+                document.getElementById('inputImage').addEventListener('change', function (event) {
+                    var files = event.target.files;
+                    var done = function (url) {
+                        document.getElementById('imagePreview').src = url;
+                        if (cropper) {
+                            cropper.destroy();
+                        }
+                        cropper = new Cropper(document.getElementById('imagePreview'), {
+                            aspectRatio: 1,
+                            viewMode: 3,
+                        });
+                    };
+
+                    if (files && files.length > 0) {
+                        var reader = new FileReader();
+                        reader.onload = function (event) {
+                            done(reader.result);
+                        };
+                        reader.readAsDataURL(files[0]);
+                    }
+                });
+
+                document.getElementById('cropButton').addEventListener('click', function () {
+                    cropper.getCroppedCanvas().toBlob(function (blob) {
+                        var formData = new FormData();
+                        formData.append('user[pending_avatar]', blob, 'avatar.png');
+
+                        fetch('/profile/update-avatar', {
+                            method: 'POST',
+                            body: formData,
+                        }).then(response => {
+                            if (response.ok) {
+                                alert('Avatar updated successfully!');
+                                location.reload(); // Ensure to reload to fetch updated avatar
+                            } else {
+                                response.text().then(text => alert(text));
+                            }
+                        }).catch(error => {
+                            console.error('Error:', error);
+                            alert('Failed to update avatar.');
+                        });
+                    });
+                });
+            </script>
+</body>
+
+</html>

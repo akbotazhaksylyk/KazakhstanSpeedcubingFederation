@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script async="" src="//www.google-analytics.com/analytics.js"></script>
+    <script
+        type="text/javascript">window.NREUM || (NREUM = {}); NREUM.info = { "beacon": "bam.nr-data.net", "errorBeacon": "bam.nr-data.net", "licenseKey": "43326a088c", "applicationID": "10385163", "transactionName": "dFheEERaWFwHFE1RX1pHVRBfQV1fDBVNXFVA", "queueTime": 0, "applicationTime": 103, "agent": "" }</script>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+
+    <link rel="icon" type="image/png" href="/assets/logo.PNG" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="og:image"
+        content="https://www.worldcubeassociation.org/assets/og-wca_logo-d7533638dbb753b45e9969280ca4c13215fdb53774a27a451164066a016b2190.png">
+
+    <title>Создать соревнование</title>
+    <script>
+        window.wca = {
+            currentLocale: 'ru',
+        };
+    </script>
+
+    <link rel="stylesheet"
+        href="/assets/application-9a2a71f4b0ed5f4ae53d1d0e3617ebdfa82ba1e91340381ba5e9a63de854bbac.css" media="all">
+
+    <!-- <script src="/packs/js/jquery-67644508c82866575bb3.js"></script> -->
+    <script src="/packs/js/vendor-840231f5ebc79c0cd90e.js"></script>
+    <script src="/packs/js/347-28f7bd8610cbcaa720eb.js"></script>
+    <script src="/packs/js/127-a422b96ea63a18b084a2.js"></script>
+    <script src="/packs/js/i18n-d525f05e564d30e849fc.js"></script>
+    <link rel="stylesheet" href="/packs/css/216-36035357.css">
+    <link rel="stylesheet" href="/packs/css/272-5854f64f.css">
+    <link rel="stylesheet" href="/packs/css/347-504d8c99.css">
+    <link rel="stylesheet" href="/packs/css/647-37985c6a.css">
+    <link rel="stylesheet" href="/packs/css/949-5e891e66.css">
+
+    <meta name="csrf-param" content="authenticity_token">
+    <meta name="csrf-token"
+        content="MKkEq2z_VNgzCwMzgasxdNteX2qRvCzU7rGsypb7zuXM4KdlJtc_oRJo2m3f_xYsTsz9dAT8mmHVc9_8AS1fEQ">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://www.worldcubeassociation.org/rss.xml">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
+    <style>
+        .cubing-icon {
+            color: gray;
+            /* Тусклый цвет для неактивного состояния */
+            cursor: pointer;
+        }
+
+        input[type="checkbox"]:checked+label .cubing-icon {
+            color: black;
+            /* Яркий цвет для активного состояния */
+        }
+    </style>
+</head>
+
+<body data-rails-controller-name="competitions" data-rails-controller-action-name="new"
+    style="background-color: white;">
+
+    <%- include('../navbar', { user: user }) %>
+
+        <main>
+            <div class="container">
+
+            </div>
+
+
+            <div class="container">
+                <h1>Создать соревнование</h1>
+
+                <div data-react-class="CompetitionForm"
+                    data-react-props="{&quot;competition&quot;:{&quot;competitionId&quot;:&quot;&quot;,&quot;name&quot;:&quot;&quot;,&quot;shortName&quot;:&quot;&quot;,&quot;nameReason&quot;:null,&quot;venue&quot;:{&quot;countryId&quot;:&quot;&quot;,&quot;cityName&quot;:&quot;&quot;,&quot;name&quot;:&quot;&quot;,&quot;details&quot;:null,&quot;address&quot;:null,&quot;coordinates&quot;:{&quot;lat&quot;:0,&quot;long&quot;:0}},&quot;startDate&quot;:null,&quot;endDate&quot;:null,&quot;series&quot;:null,&quot;information&quot;:null,&quot;competitorLimit&quot;:{&quot;enabled&quot;:true,&quot;count&quot;:null,&quot;reason&quot;:null},&quot;staff&quot;:{&quot;staffDelegateIds&quot;:[69318],&quot;traineeDelegateIds&quot;:[],&quot;organizerIds&quot;:[],&quot;contact&quot;:null},&quot;championships&quot;:[],&quot;website&quot;:{&quot;generateWebsite&quot;:null,&quot;externalWebsite&quot;:null,&quot;externalRegistrationPage&quot;:null,&quot;usesWcaRegistration&quot;:true,&quot;usesWcaLive&quot;:true},&quot;entryFees&quot;:{&quot;currencyCode&quot;:&quot;USD&quot;,&quot;baseEntryFee&quot;:0,&quot;onTheSpotEntryFee&quot;:null,&quot;guestEntryFee&quot;:0,&quot;donationsEnabled&quot;:null,&quot;refundPolicyPercent&quot;:null,&quot;refundPolicyLimitDate&quot;:null},&quot;registration&quot;:{&quot;openingDateTime&quot;:null,&quot;closingDateTime&quot;:null,&quot;waitingListDeadlineDate&quot;:null,&quot;eventChangeDeadlineDate&quot;:null,&quot;allowOnTheSpot&quot;:null,&quot;allowSelfDeleteAfterAcceptance&quot;:false,&quot;allowSelfEdits&quot;:false,&quot;guestsEnabled&quot;:true,&quot;guestEntryStatus&quot;:&quot;unclear&quot;,&quot;guestsPerRegistration&quot;:null,&quot;extraRequirements&quot;:null,&quot;forceComment&quot;:null},&quot;eventRestrictions&quot;:{&quot;forbidNewcomers&quot;:{&quot;enabled&quot;:false,&quot;reason&quot;:null},&quot;earlyPuzzleSubmission&quot;:{&quot;enabled&quot;:false,&quot;reason&quot;:null},&quot;qualificationResults&quot;:{&quot;enabled&quot;:false,&quot;reason&quot;:null,&quot;allowRegistrationWithout&quot;:false},&quot;eventLimitation&quot;:{&quot;enabled&quot;:false,&quot;reason&quot;:null,&quot;perRegistrationLimit&quot;:null},&quot;mainEventId&quot;:null},&quot;remarks&quot;:null,&quot;admin&quot;:{&quot;isConfirmed&quot;:false,&quot;isVisible&quot;:false},&quot;cloning&quot;:{&quot;fromId&quot;:null,&quot;cloneTabs&quot;:false}},&quot;usesV2Registrations&quot;:false,&quot;storedEvents&quot;:[],&quot;isAdminView&quot;:null,&quot;isPersisted&quot;:false,&quot;isSeriesPersisted&quot;:false,&quot;isCloning&quot;:false}"
+                    data-react-cache-id="CompetitionForm-0">
+                    <div>
+                        <form id="competitionForm" class="ui form" action="/create-competition" method="post">
+                            <div class="required field">
+                                <div class="ui input">
+                                    <input type="text" name="name" placeholder="Название соревнования" required>
+                                </div>
+                                <p class="help-block">Полное название соревнования, включая год в конце (например,
+                                    Moscow
+                                    North-West Open 2011). Слова лучше писать с большой буквы.</p>
+                            </div>
+                            <div class="field">
+                                <div class="ui input">
+                                    <input type="text" name="nameReason" placeholder="Причина названия">
+                                </div>
+                                <p class="help-block">Короткое объяснение названия соревнования.</p>
+                            </div>
+                            <div class="required field">
+                                <div class="ui input">
+                                    <input type="text" name="city" placeholder="Город Казахстана" required>
+                                </div>
+                                <p class="help-block">Название города, и область (необязательно), где будет проходить
+                                    соревнование.</p>
+                            </div>
+                            <div class="required field">
+                                <div class="ui input">
+                                    <input type="text" name="venueName" placeholder="Место проведения" required>
+                                </div>
+                                <p class="help-block">Помещение, где будет проходить соревнование.</p>
+                            </div>
+                            <div class="field">
+                                <div class="ui input">
+                                    <input type="text" name="venueDetails" placeholder="Детали места проведения">
+                                </div>
+                                <p class="help-block">Детали помещения (например, главный вход, второй этаж, следуйте
+                                    указателям).</p>
+                            </div>
+                            <div class="required field">
+                                <div class="ui input">
+                                    <input type="text" name="venueAddress" placeholder="Адрес места проведения"
+                                        required>
+                                </div>
+                                <p class="help-block"></p>
+                            </div>
+
+                            <!-- <div id="map" style="width: 100%; height: 400px;"></div><br> -->
+
+                            <div class="equal width fields">
+                                <div class="required field">
+                                    <div class="ui input">
+                                        <div class="react-datepicker-wrapper">
+                                            <div class="react-datepicker__input-container">
+                                                <input type="date" name="startDate" placeholder="Дата начала" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="help-block"></p>
+                                </div>
+                                <div class="required field">
+                                    <div class="ui input">
+                                        <div class="react-datepicker-wrapper">
+                                            <div class="react-datepicker__input-container">
+                                                <input type="date" name="endDate" placeholder="Дата окончания" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="help-block"></p>
+                                </div>
+                            </div>
+
+                            <!-- <div class="form-group required field">
+                                <label class="associated-events-label" for="events">
+                                    Дисциплины (<span class="events-selected-count"></span>)
+                                </label>
+                                <div id="events" class="associated-events">
+
+                                    <span class="event-checkbox">
+                                        <input autocomplete="off" type="hidden" value="333"
+                                            name="user[user_preferred_events_attributes][0][event_id]"
+                                            id="user_user_preferred_events_attributes_0_event_id">
+                                        <label for="user_preferred_events_333">
+                                            <input type="checkbox" id="user_preferred_events_333" name="events[]"
+                                                value="333">
+                                            <i data-toggle="tooltip" data-placement="top" title=""
+                                                class=" cubing-icon icon event-333"
+                                                data-original-title="Кубик 3x3x3"></i>
+                                        </label>
+                                        <input autocomplete="off" type="hidden"
+                                            name="user[user_preferred_events_attributes][0][id]"
+                                            id="user_user_preferred_events_attributes_0_id">
+                                    </span>
+
+                                    <span class="event-checkbox ">
+                                        <input autocomplete="off" type="hidden" value="222"
+                                            name="user[user_preferred_events_attributes][1][event_id]"
+                                            id="user_user_preferred_events_attributes_1_event_id">
+                                        <label for="user_preferred_events_222">
+                                            <input name="user[user_preferred_events_attributes][1][_destroy]"
+                                                type="hidden" value="1" autocomplete="off"><input
+                                                id="user_preferred_events_222" type="checkbox" value="0"
+                                                name="user[user_preferred_events_attributes][1][_destroy]">
+                                            <i data-toggle="tooltip" data-placement="top" title=""
+                                                class=" cubing-icon icon event-222"
+                                                data-original-title="Кубик 2x2x2"></i>
+                                        </label> <input autocomplete="off" type="hidden"
+                                            name="user[user_preferred_events_attributes][1][id]"
+                                            id="user_user_preferred_events_attributes_1_id">
+                                    </span>
+
+                                    <span class="event-checkbox ">
+                                        <input autocomplete="off" type="hidden" value="444"
+                                            name="user[user_preferred_events_attributes][2][event_id]"
+                                            id="user_user_preferred_events_attributes_2_event_id">
+                                        <label for="user_preferred_events_444">
+                                            <input name="user[user_preferred_events_attributes][2][_destroy]"
+                                                type="hidden" value="1" autocomplete="off"><input
+                                                id="user_preferred_events_444" type="checkbox" value="0"
+                                                name="user[user_preferred_events_attributes][2][_destroy]">
+                                            <i data-toggle="tooltip" data-placement="top" title=""
+                                                class=" cubing-icon icon event-444"
+                                                data-original-title="Кубик 4x4x4"></i>
+                                        </label> <input autocomplete="off" type="hidden"
+                                            name="user[user_preferred_events_attributes][2][id]"
+                                            id="user_user_preferred_events_attributes_2_id">
+                                    </span>
+
+                                    <span class="event-checkbox ">
+                                        <input autocomplete="off" type="hidden" value="555"
+                                            name="user[user_preferred_events_attributes][3][event_id]"
+                                            id="user_user_preferred_events_attributes_3_event_id">
+                                        <label for="user_preferred_events_555">
+                                            <input name="user[user_preferred_events_attributes][3][_destroy]"
+                                                type="hidden" value="1" autocomplete="off"><input
+                                                id="user_preferred_events_555" type="checkbox" value="0"
+                                                name="user[user_preferred_events_attributes][3][_destroy]">
+                                            <i data-toggle="tooltip" data-placement="top" title=""
+                                                class=" cubing-icon icon event-555"
+                                                data-original-title="Кубик 5x5x5"></i>
+                                        </label> <input autocomplete="off" type="hidden"
+                                            name="user[user_preferred_events_attributes][3][id]"
+                                            id="user_user_preferred_events_attributes_3_id">
+                                    </span>
+
+                                    <span class="event-checkbox ">
+                                        <input autocomplete="off" type="hidden" value="666"
+                                            name="user[user_preferred_events_attributes][4][event_id]"
+                                            id="user_user_preferred_events_attributes_4_event_id">
+                                        <label for="user_preferred_events_666">
+                                            <input name="user[user_preferred_events_attributes][4][_destroy]"
+                                                type="hidden" value="1" autocomplete="off"><input
+                                                id="user_preferred_events_666" type="checkbox" value="0"
+                                                name="user[user_preferred_events_attributes][4][_destroy]">
+                                            <i data-toggle="tooltip" data-placement="top" title=""
+                                                class=" cubing-icon icon event-666"
+                                                data-original-title="Кубик 6x6x6"></i>
+                                        </label> <input autocomplete="off" type="hidden"
+                                            name="user[user_preferred_events_attributes][4][id]"
+                                            id="user_user_preferred_events_attributes_4_id">
+                                    </span>
+
+                                    <span class="event-checkbox ">
+                                        <input autocomplete="off" type="hidden" value="777"
+                                            name="user[user_preferred_events_attributes][5][event_id]"
+                                            id="user_user_preferred_events_attributes_5_event_id">
+                                        <label for="user_preferred_events_777">
+                                            <input name="user[user_preferred_events_attributes][5][_destroy]"
+                                                type="hidden" value="1" autocomplete="off"><input
+                                                id="user_preferred_events_777" type="checkbox" value="0"
+                                                name="user[user_preferred_events_attributes][5][_destroy]">
+                                            <i data-toggle="tooltip" data-placement="top" title=""
+                                                class=" cubing-icon icon event-777"
+                                                data-original-title="Кубик 7x7x7"></i>
+                                        </label> <input autocomplete="off" type="hidden"
+                                            name="user[user_preferred_events_attributes][5][id]"
+                                            id="user_user_preferred_events_attributes_5_id">
+                                    </span>
+
+                                    <span class="event-checkbox ">
+                                        <input autocomplete="off" type="hidden" value="333bf"
+                                            name="user[user_preferred_events_attributes][6][event_id]"
+                                            id="user_user_preferred_events_attributes_6_event_id">
+                                        <label for="user_preferred_events_333bf">
+                                            <input name="user[user_preferred_events_attributes][6][_destroy]"
+                                                type="hidden" value="1" autocomplete="off"><input
+                                                id="user_preferred_events_333bf" type="checkbox" value="0"
+                                                name="user[user_preferred_events_attributes][6][_destroy]">
+                                            <i data-toggle="tooltip" data-placement="top" title=""
+                                                class=" cubing-icon icon event-333bf"
+                                                data-original-title="3x3x3 вслепую"></i>
+                                        </label> <input autocomplete="off" type="hidden"
+                                            name="user[user_preferred_events_attributes][6][id]"
+                                            id="user_user_preferred_events_attributes_6_id">
+                                    </span>
+
+                                    <span class="event-checkbox ">
+                                        <input autocomplete="off" type="hidden" value="333fm"
+                                            name="user[user_preferred_events_attributes][7][event_id]"
+                                            id="user_user_preferred_events_attributes_7_event_id">
+                                        <label for="user_preferred_events_333fm">
+                                            <input name="user[user_preferred_events_attributes][7][_destroy]"
+                                                type="hidden" value="1" autocomplete="off"><input
+                                                id="user_preferred_events_333fm" type="checkbox" value="0"
+                                                name="user[user_preferred_events_attributes][7][_destroy]">
+                                            <i data-toggle="tooltip" data-placement="top" title=""
+                                                class=" cubing-icon icon event-333fm"
+                                                data-original-title="Сборка 3x3x3 на количество ходов"></i>
+                                        </label> <input autocomplete="off" type="hidden"
+                                            name="user[user_preferred_events_attributes][7][id]"
+                                            id="user_user_preferred_events_attributes_7_id">
+                                    </span>
+
+                                    <span class="event-checkbox ">
+                                        <input autocomplete="off" type="hidden" value="333oh"
+                                            name="user[user_preferred_events_attributes][8][event_id]"
+                                            id="user_user_preferred_events_attributes_8_event_id">
+                                        <label for="user_preferred_events_333oh">
+                                            <input name="user[user_preferred_events_attributes][8][_destroy]"
+                                                type="hidden" value="1" autocomplete="off"><input
+                                                id="user_preferred_events_333oh" type="checkbox" value="0"
+                                                name="user[user_preferred_events_attributes][8][_destroy]">
+                                            <i data-toggle="tooltip" data-placement="top" title=""
+                                                class=" cubing-icon icon event-333oh"
+                                                data-original-title="3x3x3 одной рукой"></i>
+                                        </label> <input autocomplete="off" type="hidden"
+                                            name="user[user_preferred_events_attributes][8][id]"
+                                            id="user_user_preferred_events_attributes_8_id">
+                                    </span>
+
+                                    <span class="event-checkbox ">
+                                        <input autocomplete="off" type="hidden" value="clock"
+                                            name="user[user_preferred_events_attributes][9][event_id]"
+                                            id="user_user_preferred_events_attributes_9_event_id"
+                                            control-id="ControlID-12">
+                                        <label for="user_preferred_events_clock">
+                                            <input name="user[user_preferred_events_attributes][9][_destroy]"
+                                                type="hidden" value="1" autocomplete="off"><input
+                                                id="user_preferred_events_clock" type="checkbox" value="0"
+                                                name="user[user_preferred_events_attributes][9][_destroy]">
+                                            <i data-toggle="tooltip" data-placement="top" title=""
+                                                class=" cubing-icon icon event-clock" data-original-title="Clock"></i>
+                                        </label> <input autocomplete="off" type="hidden"
+                                            name="user[user_preferred_events_attributes][9][id]"
+                                            id="user_user_preferred_events_attributes_9_id">
+                                    </span>
+
+                                    <span class="event-checkbox ">
+                                        <input autocomplete="off" type="hidden" value="minx"
+                                            name="user[user_preferred_events_attributes][10][event_id]"
+                                            id="user_user_preferred_events_attributes_10_event_id">
+                                        <label for="user_preferred_events_minx">
+                                            <input name="user[user_preferred_events_attributes][10][_destroy]"
+                                                type="hidden" value="1" autocomplete="off"><input
+                                                id="user_preferred_events_minx" type="checkbox" value="0"
+                                                name="user[user_preferred_events_attributes][10][_destroy]">
+                                            <i data-toggle="tooltip" data-placement="top" title=""
+                                                class=" cubing-icon icon event-minx"
+                                                data-original-title="Мегаминкс"></i>
+                                        </label> <input autocomplete="off" type="hidden"
+                                            name="user[user_preferred_events_attributes][10][id]"
+                                            id="user_user_preferred_events_attributes_10_id">
+                                    </span>
+
+                                    <span class="event-checkbox ">
+                                        <input autocomplete="off" type="hidden" value="pyram"
+                                            name="user[user_preferred_events_attributes][11][event_id]"
+                                            id="user_user_preferred_events_attributes_11_event_id">
+                                        <label for="user_preferred_events_pyram">
+                                            <input name="user[user_preferred_events_attributes][11][_destroy]"
+                                                type="hidden" value="1" autocomplete="off"><input
+                                                id="user_preferred_events_pyram" type="checkbox" value="0"
+                                                name="user[user_preferred_events_attributes][11][_destroy]">
+                                            <i data-toggle="tooltip" data-placement="top" title=""
+                                                class=" cubing-icon icon event-pyram"
+                                                data-original-title="Пираминкс"></i>
+                                        </label> <input autocomplete="off" type="hidden"
+                                            name="user[user_preferred_events_attributes][11][id]"
+                                            id="user_user_preferred_events_attributes_11_id">
+                                    </span>
+
+                                    <span class="event-checkbox ">
+                                        <input autocomplete="off" type="hidden" value="skewb"
+                                            name="user[user_preferred_events_attributes][12][event_id]"
+                                            id="user_user_preferred_events_attributes_12_event_id">
+                                        <label for="user_preferred_events_skewb">
+                                            <input name="user[user_preferred_events_attributes][12][_destroy]"
+                                                type="hidden" value="1" autocomplete="off"><input
+                                                id="user_preferred_events_skewb" type="checkbox" value="0"
+                                                name="user[user_preferred_events_attributes][12][_destroy]">
+                                            <i data-toggle="tooltip" data-placement="top" title=""
+                                                class=" cubing-icon icon event-skewb" data-original-title="Скьюб"></i>
+                                        </label> <input autocomplete="off" type="hidden"
+                                            name="user[user_preferred_events_attributes][12][id]"
+                                            id="user_user_preferred_events_attributes_12_id">
+                                    </span>
+
+                                    <span class="event-checkbox ">
+                                        <input autocomplete="off" type="hidden" value="sq1"
+                                            name="user[user_preferred_events_attributes][13][event_id]"
+                                            id="user_user_preferred_events_attributes_13_event_id">
+                                        <label for="user_preferred_events_sq1">
+                                            <input name="user[user_preferred_events_attributes][13][_destroy]"
+                                                type="hidden" value="1" autocomplete="off"><input
+                                                id="user_preferred_events_sq1" type="checkbox" value="0"
+                                                name="user[user_preferred_events_attributes][13][_destroy]">
+                                            <i data-toggle="tooltip" data-placement="top" title=""
+                                                class=" cubing-icon icon event-sq1" data-original-title="Square-1"></i>
+                                        </label> <input autocomplete="off" type="hidden"
+                                            name="user[user_preferred_events_attributes][13][id]"
+                                            id="user_user_preferred_events_attributes_13_id">
+                                    </span>
+
+                                    <span class="event-checkbox ">
+                                        <input autocomplete="off" type="hidden" value="444bf"
+                                            name="user[user_preferred_events_attributes][14][event_id]"
+                                            id="user_user_preferred_events_attributes_14_event_id">
+                                        <label for="user_preferred_events_444bf">
+                                            <input name="user[user_preferred_events_attributes][14][_destroy]"
+                                                type="hidden" value="1" autocomplete="off"><input
+                                                id="user_preferred_events_444bf" type="checkbox" value="0"
+                                                name="user[user_preferred_events_attributes][14][_destroy]">
+                                            <i data-toggle="tooltip" data-placement="top" title=""
+                                                class=" cubing-icon icon event-444bf"
+                                                data-original-title="4x4x4 вслепую"></i>
+                                        </label> <input autocomplete="off" type="hidden"
+                                            name="user[user_preferred_events_attributes][14][id]"
+                                            id="user_user_preferred_events_attributes_14_id">
+                                    </span>
+
+                                    <span class="event-checkbox ">
+                                        <input autocomplete="off" type="hidden" value="555bf"
+                                            name="user[user_preferred_events_attributes][15][event_id]"
+                                            id="user_user_preferred_events_attributes_15_event_id">
+                                        <label for="user_preferred_events_555bf">
+                                            <input name="user[user_preferred_events_attributes][15][_destroy]"
+                                                type="hidden" value="1" autocomplete="off"><input
+                                                id="user_preferred_events_555bf" type="checkbox" value="0"
+                                                name="user[user_preferred_events_attributes][15][_destroy]">
+                                            <i data-toggle="tooltip" data-placement="top" title=""
+                                                class=" cubing-icon icon event-555bf"
+                                                data-original-title="5x5x5 вслепую"></i>
+                                        </label> <input autocomplete="off" type="hidden"
+                                            name="user[user_preferred_events_attributes][15][id]"
+                                            id="user_user_preferred_events_attributes_15_id">
+                                    </span>
+
+                                    <span class="event-checkbox">
+                                        <input autocomplete="off" type="hidden" value="333mbf"
+                                            name="user[user_preferred_events_attributes][16][event_id]"
+                                            id="user_user_preferred_events_attributes_16_event_id">
+                                        <label for="user_preferred_events_333mbf">
+                                            <input name="user[user_preferred_events_attributes][16][_destroy]"
+                                                type="hidden" value="1" autocomplete="off">
+                                            <input id="user_preferred_events_333mbf" type="checkbox" value="0"
+                                                name="user[user_preferred_events_attributes][16][_destroy]">
+                                            <i data-toggle="tooltip" data-placement="top" title=""
+                                                class=" cubing-icon icon event-333mbf"
+                                                data-original-title="Мульти-блайнд"></i>
+                                        </label> <input autocomplete="off" type="hidden"
+                                            name="user[user_preferred_events_attributes][16][id]"
+                                            id="user_user_preferred_events_attributes_16_id">
+                                    </span>
+                                </div>
+                            </div> -->
+
+                            <div class="field">
+                                <p class="help-block">Важная информация, которую следует знать участникам. Она будет
+                                    отображена на главной странице соревнования.</p>
+                                <input type="text" name="information" placeholder="Информация">
+                            </div>
+                            <div class="ui fluid container slide down field visible transition">
+                                <div class="field">
+                                    <div class="ui input">
+                                        <input type="number" name="competitorLimit" placeholder="Лимит участников">
+                                    </div>
+                                    <p class="help-block">Число участников, которые могут посетить это соревнование.
+                                        Можно оставить это поле пустым.
+                                    </p>
+                                </div>
+                                <div class="field">
+                                    <input type="text" name="competitorLimitReason" placeholder="Причина лимита">
+                                    <p class="help-block">Какова причина лимита?</p>
+                                </div>
+                            </div>
+                            <div class="required field">
+                                <input type="text" name="staff.delegates" placeholder="Делегат(ы)" required>
+                                <p class="help-block">Введите имена делегатов для этого соревнования, разделяя их
+                                    запятыми.</p>
+                            </div>
+                            <div class="required field">
+                                <input type="text" name="staff.organizers" placeholder="Организатор(ы)" required>
+                                <p class="help-block">Введите имена организаторов для этого соревнования, разделяя их
+                                    запятыми.</p>
+                            </div>
+                            <div class="field">
+                                <div class="ui input">
+                                    <input type="text" name="staff.contactInfo" placeholder="Контактная информация"
+                                        required>
+                                </div>
+                            </div>
+                            <!-- <div class="field">
+                                <label for="registrationAllowOnTheSpot">Разрешить регистрацию на месте</label>
+                                <select name="registration.allowOnTheSpot" id="registrationAllowOnTheSpot">
+                                    <option value="true">Да</option>
+                                    <option value="false">Нет</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label for="registrationAllowSelfDeleteAfterAcceptance">Разрешить участникам удалять
+                                    регистрацию после подтверждения</label>
+                                <select name="registration.allowSelfDeleteAfterAcceptance"
+                                    id="registrationAllowSelfDeleteAfterAcceptance">
+                                    <option value="true">Да</option>
+                                    <option value="false">Нет</option>
+                                </select>
+                            </div> -->
+                            <div class="field">
+                                <label for="registrationExtraRequirements">Дополнительные требования к
+                                    регистрации</label>
+                                <p class="help-block">Пожалуйста, укажите дополнительные требования к регистрации,
+                                    которые не были указаны выше, например, инструкции по оплате.</p>
+                                <textarea id="registrationExtraRequirements" name="registration.extraRequirements"
+                                    control-id="ControlID-14"></textarea>
+                            </div>
+                            <div class="required field">
+                                <div class="ui input">
+                                    <input type="text" name="entryFees.baseEntryFee"
+                                        placeholder="Взнос за участие (KZT)" required>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui input">
+                                    <input type="text" id="entryFees.guestEntryFee" name="entryFees.guestEntryFee"
+                                        placeholder="Взнос для зрителей (KZT)">
+                                </div>
+                            </div>
+                            <div class="ui divider"></div>
+                            <button type="submit" class="ui primary button">Создать соревнование</button>
+                        </form>
+                    </div>
+                    <br>
+                </div>
+            </div>
+            <div id="flash-alerts" class="container">
+            </div>
+        </main>
+
+        <%- include('../footer') %>
+            <script>
+                $(document).ready(function () {
+                    $('#competitionForm').submit(function (e) {
+                        e.preventDefault(); // Останавливаем стандартную отправку формы
+
+                        var formData = $(this).serializeArray();
+                        var structuredData = {};
+
+                        formData.forEach(function (item) {
+                            structuredData[item.name] = item.value;
+                        });
+
+                        console.log(structuredData); // Проверяем структурированные данные
+
+                        // Отправляем данные на сервер
+                        $.ajax({
+                            url: '/create-competition',
+                            type: 'POST',
+                            contentType: 'application/json',
+                            data: JSON.stringify(structuredData),
+                            success: function (response) {
+                                console.log('Form successfully submitted', response);
+                                if (response.message) { // Убедитесь, что свойство message существует в объекте ответа
+                                    $('#flash-alerts').html('<div class="alert alert-info">' + response.message + '</div>');
+                                }
+                            },
+                            error: function (xhr, status, error) {
+                                console.log('Error submitting form', error);
+                                var message = xhr.responseJSON && xhr.responseJSON.message ? xhr.responseJSON.message : "Произошла ошибка при отправке формы";
+                                $('#flash-alerts').html('<div class="alert alert-danger">' + message + '</div>');
+                            }
+                        });
+                    });
+
+                    $('.ui.dropdown').dropdown(); // Инициализация dropdown
+                });
+            </script>
+
+</html>

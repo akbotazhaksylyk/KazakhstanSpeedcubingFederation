@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="icon" type="image/png" href="/assets/logo.PNG" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="og:image"
+        content='https://www.worldcubeassociation.org/assets/og-wca_logo-d7533638dbb753b45e9969280ca4c13215fdb53774a27a451164066a016b2190.png' />
+
+    <meta name="description"
+        content="The World Cube Association governs competitions for mechanical puzzles that are operated by twisting groups of pieces, commonly known as 'twisty puzzles'. The most famous of these puzzles is the Rubik's Cube, invented by professor Rubik from Hungary. A selection of these puzzles are chosen as official events of the WCA.">
+
+    <title>Соревнования</title>
+    <script>
+        window.wca = {
+            currentLocale: 'ru',
+        };
+    </script>
+
+    <link rel="stylesheet"
+        href="/assets/application-9a2a71f4b0ed5f4ae53d1d0e3617ebdfa82ba1e91340381ba5e9a63de854bbac.css" media="all" />
+
+    <script src="/packs/js/runtime-128720fa52d90c74b32c.js"></script>
+    <script src="/packs/js/jquery-67644508c82866575bb3.js"></script>
+    <script src="/packs/js/vendor-840231f5ebc79c0cd90e.js"></script>
+    <script src="/packs/js/955-2e04004775e589f59695.js"></script>
+    <script src="/packs/js/631-e366f9e35052db9e099e.js"></script>
+    <script src="/packs/js/924-c2bc3cf8e3369d02bb25.js"></script>
+    <script src="/packs/js/127-a422b96ea63a18b084a2.js"></script>
+    <script src="/packs/js/441-9fc4b8b50be30949f5ff.js"></script>
+    <script src="/packs/js/204-f81d6cea5d86b2c94918.js"></script>
+    <script src="/packs/js/460-1cc914e0b146b8382be0.js"></script>
+    <script src="/packs/js/995-cfbbaa874e266dc77cad.js"></script>
+    <script src="/packs/js/application-d1dddefdf1d559d17f3b.js"></script>
+    <script src="/packs/js/global_styles-07a293cd6835b9ef59fc.js"></script>
+    <script src="/packs/js/i18n-d525f05e564d30e849fc.js"></script>
+    <script src="/packs/js/wca_maps-238466b865df10032cbb.js"></script>
+    <script src="/packs/js/lodash_utils-76cdc819df7c5435bbb0.js"></script>
+    <link rel="stylesheet" href="/packs/css/216-36035357.css" />
+    <link rel="stylesheet" href="/packs/css/272-5854f64f.css" />
+    <link rel="stylesheet" href="/packs/css/955-79ab4ec5.css" />
+    <link rel="stylesheet" href="/packs/css/647-37985c6a.css" />
+    <link rel="stylesheet" href="/packs/css/949-5e891e66.css" />
+
+    <script src="/assets/application-d094a9a042a4890fb10870fcb8fcae55c1aa872fb548597a37c7aa267c2c63e2.js"></script>
+    <script src="/assets/locales/ru-ff45443e708b20a11f21a1e5ad8118aecc36b81ccb2fe6b6d93da53b94ec7af7.js"></script>
+
+    <meta name="csrf-param" content="authenticity_token" />
+    <meta name="csrf-token"
+        content="AN-bRgIdro1yD5hR7H9xDZWLX7AehxIbi_hrIy778LCQuOq13hAb6ZTyzfJDYQq5T8_6mgy5JFhj9smUIiZbMg" />
+
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://www.worldcubeassociation.org/rss.xml" />
+    <script>
+        $(document).ready(function () {
+            $('input[name="display"]').change(function (event) {
+                event.preventDefault(); // Предотвратить стандартное поведение для радиокнопки
+                var displayType = $(this).val(); // Получаем значение выбранной радиокнопки
+                fetchCompetitions(displayType); // Запускаем функцию для загрузки данных
+            });
+
+            function fetchCompetitions(type) {
+                $.ajax({
+                    url: '/competitions/all/' + type, // Обновите URL согласно вашему серверному маршруту
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (data) {
+                        updateCompetitionList(data, type);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('AJAX error:', error);
+                    }
+                });
+            }
+
+            function updateCompetitionList(data, type) {
+                var listContainer = $('#competitions-list');
+                listContainer.empty(); // Очистить текущий список
+
+                data.forEach(function (comp) {
+                    var listItem = '<li class="list-group-item not-past">' +
+                        '<span class="date">' +
+                        '<i class="icon hourglass start"></i> ' +
+                        formatDate(new Date(comp.startDate)) + '</span>' +
+                        '<span class="competition-info">' +
+                        '<div class="competition-link">' +
+                        '<a href="/competitions/' + comp._id + '">' + comp.name + '</a></div>' +
+                        '<div class="location">' + comp.city + '</div>' +
+                        '</span></li>';
+                    listContainer.append(listItem);
+                });
+            }
+
+            // Инициализируем страницу с предстоящими соревнованиями
+            fetchCompetitions('upcoming');
+        });
+
+        function formatDate(date) {
+            const options = { year: 'numeric', month: 'short', day: 'numeric' };
+            return date.toLocaleDateString('ru-RU', options);
+        }
+    </script>
+</head>
+
+<body data-rails-controller-name="competitions" data-rails-controller-action-name="index"
+    style="background-color: white;">
+
+    <%- include('../navbar', { user: user }) %>
+
+    <main>
+        <div class="container">
+            <h2>Соревнования</h2>
+            <ul class="list-group">
+                <% competitions.forEach(function(comp) { %>
+                <li class="list-group-item <%= new Date(comp.startDate) >= new Date() ? 'not-past' : 'past' %>">
+                    <span class="date">
+                        <%= formatDate(comp.startDate) %> <!-- Форматированная дата начала -->
+                    </span>
+                    <span class="competition-info">
+                        <div class="competition-link">
+                            <a href="/competitions/<%= comp._id %>">
+                                <%= comp.name %>
+                            </a> <!-- Название соревнования -->
+                        </div>
+                        <div class="location">
+                            <strong>
+                                <%= comp.city %>
+                            </strong> <!-- Город -->
+                        </div>
+                    </span>
+                </li>
+                <% }); %>
+            </ul>
+        </div>
+    </main>
+    
+        <%- include('../footer') %>
+</body>
+
+</html>
