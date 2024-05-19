@@ -96,6 +96,10 @@ app.get('/index', async (req, res) => {
     }
 });
 
+app.get('/users/sign_up', (req, res) => {
+    res.render('users/sign_up', { user: req.user });
+});
+
 app.get('/users/sign_in', (req, res) => {
     // Это временно, чтобы проверить, что сообщения сохраняются в flash
     req.flash('error', 'Test error message');
