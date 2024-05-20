@@ -308,7 +308,7 @@ passport.use(new LocalStrategy({
 
 // Сериализация и десериализация пользователей
 passport.serializeUser((user, done) => {
-    done(null, user.id);  // Ensure that user.id is the correct identifier
+    done(null, user.id);
 });
 
 passport.deserializeUser(async (id, done) => {
